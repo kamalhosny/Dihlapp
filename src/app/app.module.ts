@@ -11,7 +11,7 @@ import { ConversationComponent } from './conversation/conversation.component';
   declarations: [
     AppComponent,
     UserComponent,
-    ConversationComponent
+    ConversationComponent,
   ],
   imports: [
     BrowserModule,
