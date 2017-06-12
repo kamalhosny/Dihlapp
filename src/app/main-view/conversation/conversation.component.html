@@ -19,10 +19,12 @@
       </p>
     </div>
   </div>
-  <form class="send-message">
-    <select>
-      <option value=""><img src="{{emoji.url}}"/>Emoji</option>
-    </select>
+  <form class="send-message" ng-submit="">
+    <emoji-input
+      [onEnter]="onEnterFunction"
+      [popupAnchor]="'bottom'"
+      [(model)]="bindedVariable">
+    </emoji-input>
     <button name="attachment" type="button"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
     <textarea placeholder="Type your message"></textarea>
     <button class="send-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>

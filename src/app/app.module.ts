@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routes } from './app.routes';
+import { EmojiModule } from 'angular2-emoji';
+
 
 import { AppComponent } from './app.component';
 import { MainViewComponent } from './main-view/main-view.component';
@@ -20,7 +22,8 @@ import { ConversationComponent } from './main-view/conversation/conversation.com
     BrowserModule,
     FormsModule,
     HttpModule,
-    routes
+    routes,
+    EmojiModule
   ],
   providers: [],
   bootstrap: [AppComponent]
