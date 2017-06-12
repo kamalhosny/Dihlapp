@@ -1,0 +1,45 @@
+.chatbox {
+  float: left;
+  background: #7f848b;
+  width: 50%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 20px;
+
+  .user {
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+    img {
+      float: left;
+    }
+
+    p {
+      float: left;
+      margin: 0 10px;
+      line-height: 50px;
+    }
+
+    i {
+      height: 16px;
+    }
+  }
+  .current-user {
+    width: 100%;
+    margin-top: 10px;
+    float: right;
+    img {
+      float: right;
+    }
+
+    p {
+      float: right;
+      margin: 0 10px;
+      line-height: 50px;
+    }
+
+    i {
+      height: 16px;
+    }
+  }
+}

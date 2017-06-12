@@ -1,0 +1,30 @@
+<section class="chatbox">
+  <!-- <div class="typing-status">
+    <p *ngIf="contact.isTyping" class="light"><span class="bold">{{contact.name}}</span>is typing ...</p>
+    <button class="fa fa-star" aria-hidden="true" (click)="Favorite(contact)" [ngClass]="{yellow: isFavorite}"></button>
+  </div> -->
+  <div class="conversation clearfix">
+    <div class="message" *ngFor="let message of messages" [ngClass]="message.user.name === 'Joe' ? 'current-user' : 'user'">
+      <img src="{{message.user.avatar}}"/>
+      <p>{{message.content}}</p>
+      <p class="light">{{message.timestamp}}</p>
+      <p class="seen" *ngIf="message.seen">
+        <span class="fa-stack">
+          <i class="fa fa-check fa-stack-1x" style="margin-left:4px"></i>
+          <i class="fa fa-check  fa-stack-1x" style="margin-left:-4px"></i>
+        </span>
+      </p>
+      <p class="sent" *ngIf="message.sent && message.seen === false">
+          <i class="fa fa-check"></i>
+      </p>
+    </div>
+  </div>
+  <form class="send-message">
+    <select>
+      <option value=""><img src="{{emoji.url}}"/>Emoji</option>
+    </select>
+    <button name="attachment" type="button"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
+    <textarea placeholder="Type your message"></textarea>
+    <button class="send-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+  </form>
+</section>
