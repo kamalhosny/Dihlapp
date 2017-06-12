@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './conversation.component.html',
   styleUrls: ['./conversation.component.scss']
 })
+
 export class ConversationComponent implements OnInit {
   messages: message[];
     constructor() {
@@ -47,14 +48,16 @@ export class ConversationComponent implements OnInit {
   }
 
 }
-interface message{
+
+interface message {
   content: string;
   sent: boolean;
   seen: boolean;
   timestamp: string;
   user: user;
 }
-interface user{
-  name:string;
-  avatar:string;
+
+interface user {
+  name: string;
+  avatar: string;
 }
