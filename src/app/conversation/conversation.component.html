@@ -23,6 +23,8 @@
     <select>
       <option value=""><img src="{{emoji.url}}"/>Emoji</option>
     </select>
+    <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+    <button type="button" (click)="upload()">Upload</button>
     <button name="attachment" type="button"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
     <textarea placeholder="Type your message"></textarea>
     <button class="send-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
