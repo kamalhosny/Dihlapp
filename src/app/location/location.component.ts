@@ -13,15 +13,11 @@ export class LocationComponent implements OnInit {
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
-  // location={};
-  //
-  // setPosition(position) {
-  //   this.location = position.coords;
-  // }
+  location: any;
   // ngOnInit() {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
-  //   };
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+    // };
   // }
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -31,11 +27,16 @@ export class LocationComponent implements OnInit {
     private ngZone: NgZone
   ) {}
 
+  setPosition(position) {
+    this.location = position.coords;
+    this.latitude=this.location.latitude;
+    this.longitude=this.location.longitude;
+  }
   ngOnInit() {
     //set google maps defaults
     this.zoom = 4;
-    this.latitude = 39.8282;
-    this.longitude = -98.5795;
+    // this.latitude = this.location;
+    // this.longitude = this.location;
 
     //create search FormControl
     this.searchControl = new FormControl();
@@ -65,9 +66,13 @@ export class LocationComponent implements OnInit {
         });
       });
     });
-  }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+    };
 
+  }
   private setCurrentPosition() {
+
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
@@ -77,7 +82,7 @@ export class LocationComponent implements OnInit {
     }
   }
   private updateMarkerPos(position){
-    this.longitude= position.coords.long;
+    this.longitude= position.coords.lng;
     this.latitude = position.coords.lat;
   }
 }
