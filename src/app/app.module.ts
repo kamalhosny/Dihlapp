@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { UserComponent } from './main-view/user/user.component';
 import { ConversationComponent } from './main-view/conversation/conversation.component';
+import { AuthComponent } from './auth/auth.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ConversationComponent } from './main-view/conversation/conversation.com
     MainViewComponent,
     UserComponent,
     ConversationComponent,
+    AuthComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,6 @@ import { ConversationComponent } from './main-view/conversation/conversation.com
     routes,
     EmojiModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
