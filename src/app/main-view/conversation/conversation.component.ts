@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 
 export class ConversationComponent implements OnInit {
   messages: message[];
-  showMap: boolean =false;
     constructor() {
       this.messages = [
         {
