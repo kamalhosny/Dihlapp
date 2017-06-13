@@ -7,16 +7,23 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { ConversationComponent } from './conversation/conversation.component';
 
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     ConversationComponent,
+    FileSelectDirective,
+    FileDropDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

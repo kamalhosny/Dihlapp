@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { FileUploadService } from '../services/upload/file-upload.service';
+
+import { FileUploader } from 'ng2-file-upload';
+
 
 @Component({
   selector: 'app-conversation',
   templateUrl: './conversation.component.html',
-  styleUrls: ['./conversation.component.scss']
+  styleUrls: ['./conversation.component.scss'],
+  providers: [FileUploadService]
+
 })
 export class ConversationComponent implements OnInit {
   messages: message[];
-    constructor() {
+    constructor(private fileUploadService: FileUploadService) {
       this.messages = [
         {
           content: 'Hello there',
@@ -39,12 +45,16 @@ export class ConversationComponent implements OnInit {
             avatar: 'https://placeholdit.co//i/50x50'
           }
         },
-      ]
+      ];
+
 
      }
 
+
   ngOnInit() {
   }
+  
+  public uploader:FileUploader = new FileUploader({url:'http://localhost:3001/upload'});
 
 }
 interface message{
