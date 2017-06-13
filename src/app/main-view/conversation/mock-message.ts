@@ -1,6 +1,6 @@
 import {  Message } from './message.type';
 
-export const MESSAGES: Message[] = [
+export const MESSAGES = [
   {
     content: 'Hello there',
     sent: true,
