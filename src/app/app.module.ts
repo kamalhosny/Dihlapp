@@ -7,13 +7,15 @@ import { EmojiModule } from 'angular2-emoji';
 
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './main-view/user/user.component';
-import { ConversationComponent } from './main-view/conversation/conversation.component';
 import { LocationComponent } from './location/location.component';
 import { AgmCoreModule } from '@agm/core';
 import { FormControl } from "@angular/forms";
 
 import { MainViewComponent } from './main-view/main-view.component';
+import { UserComponent } from './main-view/user/user.component';
+import { ConversationComponent } from './main-view/conversation/conversation.component';
+import { AuthComponent } from './auth/auth.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { MainViewComponent } from './main-view/main-view.component';
     MainViewComponent,
     UserComponent,
     ConversationComponent,
+    AuthComponent,
+    RegisterComponent,
     LocationComponent,
   ],
   imports: [
@@ -34,7 +38,6 @@ import { MainViewComponent } from './main-view/main-view.component';
     routes,
     EmojiModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
