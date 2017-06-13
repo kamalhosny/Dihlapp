@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routes } from './app.routes';
 import { EmojiModule } from 'angular2-emoji';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 
 import { AppComponent } from './app.component';
@@ -36,7 +37,8 @@ import { RegisterComponent } from './register/register.component';
       libraries: ["places"]
     }),
     routes,
-    EmojiModule
+    EmojiModule,
+    Ng2FilterPipeModule
   ],
   bootstrap: [AppComponent]
 })
