@@ -9,140 +9,113 @@ import { UploadOutput, UploadInput, UploadFile, NgUploaderModule } from 'ngx-upl
   styleUrls: ['./profileupdate.component.scss']
 })
 export class ProfileupdateComponent implements OnInit {
-    formData: FormData;
-    avatar: any;
-    imagePath = ""
+  formData: FormData;
+  avatar: any;
+  imagePath = ""
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
   dragOver: boolean;
   constructor(private router: Router) {
-  this.files = []; // local uploading files array
-  this.uploadInput = new EventEmitter<UploadInput>();
-}
+    this.files = []; // local uploading files array
+    this.uploadInput = new EventEmitter<UploadInput>();
+  }
   ngOnInit() {
   }
 
   EditProfile(){
     // httprequest
     alert('Profile updated');
-     this.router.navigate(['']);
+    this.router.navigate(['']);
   }
 
   imageSelected(event) {
     var fileInput = event.target.files[0];
     console.log(event)
-     var reader = new FileReader();
+    var reader = new FileReader();
 
-      // Closure to capture the file information.
-      reader.onload = ((theFile)=> {
-        return (e) => {
-          this.imagePath = e.target.result
-          console.log('result', e.target)
-        }
-        })(fileInput);
+    // Closure to capture the file information.
+    reader.onload = ((theFile)=> {
+      return (e) => {
+        this.imagePath = e.target.result
+        console.log('result', e.target)
+      }
+    })(fileInput);
 
-          // Read in the image file as a data URL.
-          if(fileInput)
-            reader.readAsDataURL(fileInput)
+    // Read in the image file as a data URL.
+    if(fileInput)
+    reader.readAsDataURL(fileInput)
   }
 
   onUploadOutput(output: UploadOutput): void {
 
-  console.log(output); // lets output to see what's going on in the console
+    console.log(output); // lets output to see what's going on in the console
 
-  if (output.type === 'allAddedToQueue') { // when all files added in queue
-    // uncomment this if you want to auto upload files when added
-    debugger
+    if (output.type === 'allAddedToQueue') { // when all files added in queue
+      // uncomment this if you want to auto upload files when added
+      debugger
+      const event: UploadInput = {
+        type: 'uploadAll',
+        url: 'https://hookb.in/vgLw5mWJ',
+        method: 'POST',
+        data: { foo: 'bar' },
+        concurrency: 0
+      };
+
+      this.uploadInput.emit(event);
+    } else if (output.type === 'addedToQueue') {
+      this.files.push(output.file); // add file to array when added
+    } else if (output.type === 'uploading') {
+      // update current data in files array for uploading file
+      const index = this.files.findIndex(file => file.id === output.file.id);
+      this.files[index] = output.file;
+    } else if (output.type === 'removed') {
+      // remove file from array when removed
+      this.files = this.files.filter((file: UploadFile) => file !== output.file);
+    } else if (output.type === 'dragOver') { // drag over event
+      this.dragOver = true;
+    } else if (output.type === 'dragOut') { // drag out event
+      this.dragOver = false;
+    } else if (output.type === 'drop') { // on drop event
+      this.dragOver = false;
+    }
+  }
+
+  startUpload(): void {  // manually start uploading
     const event: UploadInput = {
       type: 'uploadAll',
       url: 'https://hookb.in/vgLw5mWJ',
       method: 'POST',
       data: { foo: 'bar' },
-      concurrency: 0
-    };
+      concurrency: 1 // set sequential uploading of files with concurrency 1
+    }
 
     this.uploadInput.emit(event);
-  } else if (output.type === 'addedToQueue') {
-    this.files.push(output.file); // add file to array when added
-  } else if (output.type === 'uploading') {
-    // update current data in files array for uploading file
-    const index = this.files.findIndex(file => file.id === output.file.id);
-    this.files[index] = output.file;
-  } else if (output.type === 'removed') {
-    // remove file from array when removed
-    this.files = this.files.filter((file: UploadFile) => file !== output.file);
-  } else if (output.type === 'dragOver') { // drag over event
-    this.dragOver = true;
-  } else if (output.type === 'dragOut') { // drag out event
-    this.dragOver = false;
-  } else if (output.type === 'drop') { // on drop event
-    this.dragOver = false;
-  }
-}
-
-startUpload(): void {  // manually start uploading
-  const event: UploadInput = {
-    type: 'uploadAll',
-    url: 'https://hookb.in/vgLw5mWJ',
-    method: 'POST',
-    data: { foo: 'bar' },
-    concurrency: 1 // set sequential uploading of files with concurrency 1
   }
 
-  this.uploadInput.emit(event);
-}
+  cancelUpload(id: string): void {
+    this.uploadInput.emit({ type: 'cancel', id: id });
+  }
+  handleFiles(fileInput: any) {
+    let fileList = document.getElementById('fileSelector');
+    var imageType = /^image\//;
+    var img = document.createElement("img");
+    img.classList.add("obj");
 
-cancelUpload(id: string): void {
-  this.uploadInput.emit({ type: 'cancel', id: id });
-}
-handleFiles(fileInput: any) {
- let fileList = document.getElementById('fileSelector');
- var imageType = /^image\//;
- // if (!imageType.test(file.type)) {
- //     continue;
- //   }
+    let avatars = this.files;
+    console.log()
+    console.log('avatars', avatars);
+  }
 
-   var img = document.createElement("img");
-   img.classList.add("obj");
-  //  img.file = file;
-  //  preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+  _window() : any {
+    // return the global native browser window object
+    return window;
+  }
 
-  //  var reader = new FileReader();
-  //  reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-  //  reader.readAsDataURL(file);
-  let avatars = this.files;
-  console.log()
-   console.log('avatars', avatars);
-
-  //  var reader = new FileReader();
-   //
-  //   // Closure to capture the file information.
-  //   reader.onload = (function(theFile) {
-  //     return (e) => {
-  //       console.log('result', e.target.result)
-  //     }
-  //     })(fileInput);
-   //
-  //       // Read in the image file as a data URL.
-  //       if(fileInput)
-  //         debugger
-  //         reader.readAsDataURL(fileInput)
-      }
-
-
-
-
-
-_window() : any {
-   // return the global native browser window object
-   return window;
-}
-
-fakeClick(): void {
-  let w = this._window()
-  let d = w.document.getElementById('fileSelector').click()
-}
+  fakeClick(): void {
+    let w = this._window()
+    let d = w.document.getElementById('fileSelector').click()
+  }
 
 }
 export interface UploadInput {
