@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routes } from './app.routes';
 import { EmojiModule } from 'angular2-emoji';
+import { NgUploaderModule } from 'ngx-uploader';
 
 
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { UserComponent } from './main-view/user/user.component';
 import { ConversationComponent } from './main-view/conversation/conversation.component';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { RegisterComponent } from './register/register.component';
     ConversationComponent,
     AuthComponent,
     RegisterComponent,
+    ProfileupdateComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routes,
-    EmojiModule
+    EmojiModule,
+    NgUploaderModule
   ],
   bootstrap: [AppComponent]
 })
