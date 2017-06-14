@@ -6,8 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { ConversationComponent } from './conversation/conversation.component';
-
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+import { NgUploaderModule } from 'ngx-uploader';
 
 
 
@@ -17,8 +16,7 @@ import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
     AppComponent,
     UserComponent,
     ConversationComponent,
-    FileSelectDirective,
-    FileDropDirective
+    NgUploaderModule
   ],
   imports: [
     BrowserModule,

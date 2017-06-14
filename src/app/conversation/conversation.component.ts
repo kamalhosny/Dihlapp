@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FileUploadService } from '../services/upload/file-upload.service';
-
-import { FileUploader } from 'ng2-file-upload';
-
-
+import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 
 @Component({
   selector: 'app-conversation',
@@ -14,10 +11,16 @@ import { FileUploader } from 'ng2-file-upload';
 })
 export class ConversationComponent implements OnInit {
   messages: message[];
-  filesToUpload: Array<File>;
+  formData: FormData;
+  files: UploadFile[];
+  uploadInput: EventEmitter<UploadInput>;
+  humanizeBytes: Function;
+  dragOver: boolean;
 
     constructor(private fileUploadService: FileUploadService) {
-      this.filesToUpload = [];
+      this.files = [];
+      this.uploadInput = new EventEmitter<UploadInput>();
+      this.humanizeBytes = humanizeBytes;
       this.messages = [
         {
           content: 'Hello there',
@@ -53,43 +56,57 @@ export class ConversationComponent implements OnInit {
 
 
      }
- upload() {
-      this.makeFileRequest("http://localhost:3000/upload", [], this.filesToUpload).then((result) => {
-        console.log(result);
-      }, (error) => {
-        console.error(error);
-      });
-    }
-  fileChangeEvent(fileInput: any){
-      this.filesToUpload = <Array<File>> fileInput.target.files;
-    }
-  makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
-    return new Promise((resolve, reject) => {
-        var formData: any = new FormData();
-        var xhr = new XMLHttpRequest();
-        for(var i = 0; i < files.length; i++) {
-            formData.append("uploads[]", files[i], files[i].name);
-        }
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    resolve(JSON.parse(xhr.response));
-                } else {
-                    reject(xhr.response);
-                }
-            }
-        }
-        xhr.open("POST", url, true);
-        xhr.send(formData);
-      });
-  }
+
+ onUploadOutput(output: UploadOutput): void {
+     console.log(output);
+  
+     if (output.type === 'allAddedToQueue') {
+
+     } else if (output.type === 'addedToQueue') {
+       this.files.push(output.file); 
+
+     } else if (output.type === 'uploading') {
+
+       const index = this.files.findIndex(file => file.id === output.file.id);
+       this.files[index] = output.file;
+
+     } else if (output.type === 'removed') {
+       
+       this.files = this.files.filter((file: UploadFile) => file !== output.file);
+
+     } else if (output.type === 'dragOver') {
+      
+       this.dragOver = true;
+
+     } else if (output.type === 'dragOut') { 
+
+       this.dragOver = false;
+
+     } else if (output.type === 'drop') { 
+
+       this.dragOver = false;
+     }
+   }
+   
+   startUpload(): void {  
+     const event: UploadInput = {
+       type: 'uploadAll',
+       url: '/upload',
+       method: 'POST',
+       data: { foo: 'bar' },
+       concurrency: 1 
+     }
+   
+     this.uploadInput.emit(event);
+   }
+   
+   cancelUpload(id: string): void {
+     this.uploadInput.emit({ type: 'cancel', id: id });
+   }
 
 
   ngOnInit() {
   }
-  
-  public uploader:FileUploader = new FileUploader({url:'http://localhost:3001/upload'});
-
 }
 interface message{
   content: string;
