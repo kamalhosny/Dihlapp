@@ -10,7 +10,6 @@ import { EmojiModule } from 'angular2-emoji';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 import { AppComponent } from './app.component';
-import { NgUploaderModule } from 'ngx-uploader';
 import { LocationComponent } from './location/location.component';
 import { AgmCoreModule } from '@agm/core';
 import { FormControl } from "@angular/forms";
