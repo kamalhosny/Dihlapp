@@ -14,9 +14,11 @@ import { MessageService } from '../../services/message.service';
 })
 
 export class ConversationComponent implements OnInit {
+  message: Message;
   messages: Message[];
   showMap: boolean =false;
   constructor(private messageService: MessageService) {
+    this.message = {} as Message;
 
     this.messages=[
       {
@@ -56,6 +58,7 @@ export class ConversationComponent implements OnInit {
   }
 
   sendMessage(data) {
+    console.log(data);
     this.messageService.postMessage(data)
         .subscribe(messages => this.messages = messages);
   }

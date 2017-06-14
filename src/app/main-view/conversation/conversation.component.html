@@ -20,12 +20,12 @@
       </p>
     </div>
   </div>
-  <form class="send-message" (submit)="sendMessage()" >
-    <!-- <emoji-input
+  <form class="send-message" (submit)="sendMessage(message)" >
+    <emoji-input
       [onEnter]="onEnterFunction"
       [popupAnchor]="'bottom'"
-      [(model)]="bindedVariable">
-    </emoji-input> -->
+      [(model)]="message.content">
+    </emoji-input>
     <!-- <textarea placeholder="Type your message" [(ngModel)]="message.content"></textarea> -->
     <button name="attachment" type="button"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
     <button type="submit" class="send-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
