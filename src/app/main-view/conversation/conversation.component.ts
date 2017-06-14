@@ -15,7 +15,8 @@ import { MessageService } from '../../services/message.service';
 
 export class ConversationComponent implements OnInit {
   messages: Message[];
-  showMap: boolean =false;
+  attachmentMenu: boolean = true;
+  showMap: boolean = false;
   constructor(private messageService: MessageService) {
 
     this.messages=[
@@ -55,6 +56,17 @@ export class ConversationComponent implements OnInit {
     ];
   }
 
+
+  // show attachment small menu
+  showAttachmentMenu() {
+    if (this.attachmentMenu === true) {
+      this.attachmentMenu = false;
+    } else {
+      this.attachmentMenu = true;
+    }
+  }
+
+  // handle messages CRUD from the message service
   sendMessage(data) {
     this.messageService.postMessage(data)
         .subscribe(messages => this.messages = messages);
@@ -71,15 +83,3 @@ export class ConversationComponent implements OnInit {
   }
 
 }
-// interface Message {
-//   id: number;
-//   content: string;
-//   sent: boolean;
-//   seen: boolean;
-//   timestamp: string;
-//   user: User;
-// }
-//  interface User {
-//    name: string;
-//    avatar: string;
-//  }
