@@ -10,6 +10,7 @@ import { EmojiModule } from 'angular2-emoji';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 import { AppComponent } from './app.component';
+import { NgUploaderModule } from 'ngx-uploader';
 import { LocationComponent } from './location/location.component';
 import { AgmCoreModule } from '@agm/core';
 import { FormControl } from "@angular/forms";
@@ -29,13 +30,14 @@ import { ProfileupdateComponent } from './profileupdate/profileupdate.component'
     AuthComponent,
     RegisterComponent,
     ProfileupdateComponent,
-    LocationComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     JsonpModule,
+    NgUploaderModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAlGiEgwr_RLe6kpMvMtAWaEyoAjQcQFAE',
       libraries: ["places"]
