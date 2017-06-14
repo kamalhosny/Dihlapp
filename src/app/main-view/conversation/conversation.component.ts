@@ -26,6 +26,7 @@ export class ConversationComponent implements OnInit {
   humanizeBytes: Function;
   dragOver: boolean;
   tempImg: string;
+  attachmentMenu: boolean = true;
   constructor(private messageService: MessageService, private element: ElementRef) {
     this.message = {} as Message;
     this.messages=[
@@ -65,6 +66,17 @@ export class ConversationComponent implements OnInit {
     ];
   }
 
+
+  // show attachment small menu
+  showAttachmentMenu() {
+    if (this.attachmentMenu === true) {
+      this.attachmentMenu = false;
+    } else {
+      this.attachmentMenu = true;
+    }
+  }
+
+  // handle messages CRUD from the message service
   sendMessage(data) {
     console.log(data);
     this.messageService.postMessage(data)
@@ -148,15 +160,3 @@ export class ConversationComponent implements OnInit {
   }
 
 }
-// interface Message {
-//   id: number;
-//   content: string;
-//   sent: boolean;
-//   seen: boolean;
-//   timestamp: string;
-//   user: User;
-// }
-//  interface User {
-//    name: string;
-//    avatar: string;
-//  }
