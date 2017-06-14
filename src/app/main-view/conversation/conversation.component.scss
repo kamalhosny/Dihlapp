@@ -6,6 +6,12 @@
   overflow-y: scroll;
   padding: 20px;
 
+  :host >>> .emogi-image {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+  }
+  
   .user {
     width: 100%;
     margin-top: 10px;
