@@ -11,10 +11,13 @@
         <label class="upload-button" for="avatar">Profile Photo</label>
     </tr>
     <tr>
-      <div class="avatar"></div>
+      <div class="avatar" id="list"><img src={{imagePath}}/></div>
     </tr>
     <tr>
-        <input class="chooseFile" type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+        <!-- <input id="fileSelector" style="display:none" class="chooseFile" type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput"  required (change)="handleFiles(this.files)" > -->
+        <button type="button" name="button"  (click)="fakeClick()"> Upload Image</button>
+        <input type="file" id="fileSelector" style="display:none" name="image_upload" (change)="imageSelected($event)">
+
     </tr>
     <tr>
         <label for="firstName">First Name</label>
