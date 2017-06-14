@@ -30,8 +30,12 @@
     <button name="attachment" type="button" (click)="showAttachmentMenu()"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
     <div class="attachment-menu" [ngClass]="{'hidden-menu': attachmentMenu}">
       <ul>
-        <li>Maps</li>
-        <li>Upload</li>
+        <li>
+          <button name="location" type="button"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+        </li>        
+        <li>
+          <button name="upload" type="button"><i class="fa fa-upload" aria-hidden="true"></i></button>
+        </li>
       </ul>
     </div>
     <button type="submit" class="send-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
