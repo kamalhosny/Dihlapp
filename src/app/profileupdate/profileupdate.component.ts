@@ -11,7 +11,7 @@ import { UploadOutput, UploadInput, UploadFile, NgUploaderModule } from 'ngx-upl
 export class ProfileupdateComponent implements OnInit {
   formData: FormData;
   avatar: any;
-  imagePath = ""
+  imagePath = "";
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;

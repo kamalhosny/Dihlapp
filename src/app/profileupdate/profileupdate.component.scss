@@ -47,9 +47,10 @@ body{
         height:100px;
         width: 100px;
         margin: 0 auto;
+        padding:0;
         border-radius: 50%;
-        background-image: url("avatar-1577909_640.png");
         background-size:cover;
+        background-image: url("avatar-1577909_640.png");
       }
       .chooseFile{
         display: inline-block;
