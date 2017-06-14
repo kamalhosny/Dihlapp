@@ -1,70 +1,92 @@
 .contacts {
-  float: left;
-  background: #485361;
-  width: 20%;
-  height: 100%;
-  overflow-y: scroll;
-  box-shadow: 2px 0px 8px 0px rgba(50, 50, 50, 0.9);
+	float: left;
+	background: #485361;
+	width: 20%;
+	height: 100%;
+	overflow-y: scroll;
+	box-shadow: 2px 0px 8px 0px rgba(50, 50, 50, 0.9);
 
-  .search {
-    width: 90%;
-    margin: 20px auto;
-    border-radius: 20px;
-    background: #323f4e;
-    border: none;
-    padding: 0 15px;
+	.search {
+		width: 90%;
+		margin: 20px auto;
+		border-radius: 20px;
+		background: #323f4e;
+		border: none;
+		padding: 0 15px;
 
-    input {
-      width: 80%;
-      font-size: 14px;
-      padding: 10px 5px;
-      background: none;
-      border: none;
-      outline: none;
-      color: #868b8e;
-      &::placeholder {
-        color: #868b8e;
+		input {
+			width: 80%;
+			font-size: 14px;
+			padding: 10px 5px;
+			background: none;
+			border: none;
+			outline: none;
+			color: #868b8e;
+			&::placeholder {
+				color: #868b8e;
+			}
+		}
+
+		.fa-search {
+			color: #fff;
+		}
+	}
+
+  .search-results {
+    border-radius: 10px;
+    padding: 5px 20px;
+    margin-left: 15px;
+    margin-top: -10px;
+    width: 15%;
+    position: absolute;
+    background: #eee;
+    a {
+      display: block;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: #333;
+      & + a {
+        border-top: 1px solid #ccc;
+        margin-top: 10px;
+        padding-top: 10px;
       }
     }
-
-    .fa-search {
-      color: #fff;
-    }
   }
 
-  hr{
-    border: 0;
-    height: 0;
-    border-bottom: 1px solid rgba(145, 150, 156, 0.25);
+	hr{
+		border: 0;
+		height: 0;
+		border-bottom: 1px solid rgba(145, 150, 156, 0.25);
 }
 
-  .contacts-list {
-    padding: 15px;
-    color: #fff;
+	.contacts-list {
+		padding: 15px;
+		color: #fff;
 
-    img {
-      border-radius: 50%;
-      width: 50px;
-      float: left;
-      margin-right: 20px;
-    }
+		img {
+			border-radius: 50%;
+			width: 50px;
+			float: left;
+			margin-right: 20px;
+		}
 
-    .contact-name {
-      font-size: 16px;
-    }
+		.contact-name {
+			font-size: 16px;
+		}
 
-    .contact-message,
-    .time-created {
-      color: #91969c;
-      font-size: 14px;
-      margin-left: 70px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .time-created {
-      float: right;
-      font-size: 10px;
-    }
-  }
+		.contact-message,
+		.time-created {
+			color: #91969c;
+			font-size: 14px;
+			margin-left: 70px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.time-created {
+			float: right;
+			font-size: 10px;
+		}
+	}
 }
