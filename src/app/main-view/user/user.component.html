@@ -1,8 +1,15 @@
 <div class="contacts">
   <div class="search">
     <i class="fa fa-search" aria-hidden="true"></i>
-    <input type="text" name="search" placeholder="Search" [(ngModel)] = "contactSearch">
+    <input type="text" name="search" placeholder="Search" [(ngModel)]="contactFilter.name" />
   </div>
+
+  <div class="search-results" *ngIf="contactFilter.name.length > 0">
+    <a *ngFor="let contact of contacts | filterBy: contactFilter" class="">{{ contact.name }}</a>
+
+    <p *ngIf="(contacts | filterBy: contactFilter).length === 0">No matching contacts</p>
+  </div>
+    
   <hr>
   <section class="contacts-list">
     <div class="clearfix" *ngFor= "let contact of contacts">

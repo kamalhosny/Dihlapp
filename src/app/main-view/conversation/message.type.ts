@@ -1,4 +1,4 @@
-export class Message {
+export interface Message {
   id: number;
   content: string;
   sent: boolean;
@@ -7,7 +7,21 @@ export class Message {
   user: User;
 }
 
-export class User {
+interface User {
   name: string;
   avatar: string;
 }
+
+// export class Message {
+//   id: number;
+//   content: string;
+//   sent: boolean;
+//   seen: boolean;
+//   timestamp: string;
+//   user: User;
+// }
+
+// export class User {
+//   name: string;
+//   avatar: string;
+// }

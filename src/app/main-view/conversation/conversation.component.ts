@@ -17,6 +17,7 @@ import { MessageService } from '../../services/message.service';
 })
 
 export class ConversationComponent implements OnInit {
+  message: Message;
   messages: Message[];
   showMap: boolean =false;
   formData: FormData;
@@ -26,7 +27,7 @@ export class ConversationComponent implements OnInit {
   dragOver: boolean;
   tempImg: string;
   constructor(private messageService: MessageService, private element: ElementRef) {
-
+    this.message = {} as Message;
     this.messages=[
       {
         id: 1,
@@ -65,6 +66,7 @@ export class ConversationComponent implements OnInit {
   }
 
   sendMessage(data) {
+    console.log(data);
     this.messageService.postMessage(data)
         .subscribe(messages => this.messages = messages);
   }

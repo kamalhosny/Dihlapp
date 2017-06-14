@@ -10,6 +10,8 @@ export class UserComponent implements OnInit {
   isOnline: boolean;
   avatar: string;
   contacts:contact[];
+  contactFilter: any = { name: '' };
+
   constructor() {
     this.contacts = [
       {
@@ -60,7 +62,6 @@ export class UserComponent implements OnInit {
         lastMessageDate: '11 June',
         isTyping:false
       }
-
     ]
    }
 
