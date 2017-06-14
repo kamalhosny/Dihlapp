@@ -7,6 +7,7 @@
     <div class="message" *ngFor="let message of messages" [ngClass]="message.user.name === 'Joe' ? 'current-user' : 'user'">
       <img src="{{message.user.avatar}}"/>
       <p>{{message.content}}</p>
+      <button (click)="deleteMessage(message.id)">Delete</button>
       <p class="light">{{message.timestamp}}</p>
       <p class="seen" *ngIf="message.seen">
         <span class="fa-stack">
@@ -15,19 +16,34 @@
         </span>
       </p>
       <p class="sent" *ngIf="message.sent && message.seen === false">
-          <i class="fa fa-check"></i>
+        <i class="fa fa-check"></i>
       </p>
     </div>
   </div>
   <form class="send-message">
-    <select>
-      <option value=""><img src="{{emoji.url}}"/>Emoji</option>
-    </select>
-    <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
-    <button type="button" class="start-upload-btn" (click)="startUpload()">
+
+ <!--    <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple (change)="changeListner($event)"> -->
+
+    <button type="button" (click)="fakeClick()" class="uploadButton">Choose a file</button>
+    <input type="file" (change)="changeListner($event)" style="display: none" id="fileSelector">
+    <img src="{{tempImg}}" />
+
+<!--     <button type="button" class="start-upload-btn" (click)="startUpload()">upload</button>
+ -->
+
     <button name="attachment" type="button"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
     <textarea placeholder="Type your message"></textarea>
     <button class="send-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-    <button type="submit">submit</button>
+    <button type="submit" (click)="startUpload()">submit</button>
+  </form>
+  <form class="send-message" (submit)="sendMessage()" >
+    <emoji-input
+      [onEnter]="onEnterFunction"
+      [popupAnchor]="'bottom'"
+      [(model)]="bindedVariable">
+    </emoji-input>
+<!--     <textarea placeholder="Type your message" [(ngModel)]="message.content"></textarea>
+ -->    <button name="attachment" type="button"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
+    <button type="submit" class="send-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
   </form>
 </section>
