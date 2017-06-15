@@ -16,18 +16,34 @@
         </span>
       </p>
       <p class="sent" *ngIf="message.sent && message.seen === false">
-          <i class="fa fa-check"></i>
+        <i class="fa fa-check"></i>
       </p>
     </div>
   </div>
-  <form class="send-message" (submit)="sendMessage()" >
-    <!-- <emoji-input
+  <form class="send-message" (submit)="sendMessage(message)" >
+    <emoji-input>
       [onEnter]="onEnterFunction"
       [popupAnchor]="'bottom'"
-      [(model)]="bindedVariable">
-    </emoji-input> -->
+      [(model)]="message.content">
+    </emoji-input>
+    <button type="button" (click)="fakeClick()" class="uploadButton">Choose a file</button>
+    <input type="file" (change)="changeListner($event)" class="hiddenUploadButton" id="fileSelector">
+    <img src="{{tempImg}}" />
     <!-- <textarea placeholder="Type your message" [(ngModel)]="message.content"></textarea> -->
-    <button name="attachment" type="button"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
+
+    <!--<button type="submit" (click)="startUpload()" class="send-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>-->
+    <button name="attachment" type="button" (click)="showAttachmentMenu()"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
+    <div class="attachment-menu" [ngClass]="{'hidden-menu': attachmentMenu}">
+      <ul>
+        <li>
+          <button name="location" type="button"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+        </li>        
+        <li>
+          <button name="upload" type="button"><i class="fa fa-upload" aria-hidden="true"></i></button>
+        </li>
+      </ul>
+    </div>
     <button type="submit" class="send-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+
   </form>
 </section>

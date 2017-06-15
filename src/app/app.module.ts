@@ -1,10 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+import { NgUploaderModule } from 'ngx-uploader';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import { routes } from './app.routes';
 import { EmojiModule } from 'angular2-emoji';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+
 import { AppComponent } from './app.component';
 import { LocationComponent } from './location/location.component';
 import { AgmCoreModule } from '@agm/core';
@@ -14,6 +18,7 @@ import { UserComponent } from './main-view/user/user.component';
 import { ConversationComponent } from './main-view/conversation/conversation.component';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 
 
 @NgModule({
@@ -24,19 +29,23 @@ import { RegisterComponent } from './register/register.component';
     ConversationComponent,
     AuthComponent,
     RegisterComponent,
-    LocationComponent,
+    ProfileupdateComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     JsonpModule,
+    NgUploaderModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAlGiEgwr_RLe6kpMvMtAWaEyoAjQcQFAE',
       libraries: ["places"]
     }),
     routes,
-    EmojiModule
+    EmojiModule,
+    NgUploaderModule,
+    Ng2FilterPipeModule
   ],
   bootstrap: [AppComponent]
 })

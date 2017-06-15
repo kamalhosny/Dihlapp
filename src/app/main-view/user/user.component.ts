@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
   name: string;
   isOnline: boolean;
   avatar: string;
   contacts:contact[];
+  contactFilter: any = { name: '' };
+
   constructor() {
     this.contacts = [
       {
@@ -60,7 +62,6 @@ export class UserComponent implements OnInit {
         lastMessageDate: '11 June',
         isTyping:false
       }
-
     ]
    }
 
