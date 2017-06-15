@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { FormControl } from "@angular/forms";
+import { ModalModule } from "ngx-modal";
 
 @Component({
   moduleId: module.id,
@@ -14,11 +15,8 @@ export class LocationComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
   location: any;
-  // ngOnInit() {
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
-    // };
-  // }
+  staticMap: string;
+  hideMap: boolean;
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -33,6 +31,7 @@ export class LocationComponent implements OnInit {
     this.longitude=this.location.longitude;
   }
   ngOnInit() {
+    this.hideMap=true;
     //set google maps defaults
     this.zoom = 4;
     // this.latitude = this.location;
@@ -84,5 +83,8 @@ export class LocationComponent implements OnInit {
   private updateMarkerPos(position){
     this.longitude= position.coords.lng;
     this.latitude = position.coords.lat;
+  }
+  private staticMapUrl(zoom,size){
+    this.staticMap="http://maps.google.com/maps/api/staticmap?zoom="+zoom+"&size="+size+"x"+size+"&markers=color:red|"+this.latitude+","+this.longitude+"&mobile=true&sensor=false"
   }
 }

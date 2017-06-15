@@ -20,6 +20,7 @@ import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
