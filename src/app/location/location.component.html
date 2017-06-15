@@ -1,14 +1,18 @@
-<!-- <div class="map">
-  <agm-map [zoom]="15" [latitude]="location.latitude" [longitude]="location.longitude">
-    <agm-marker [markerDraggable]="true" [latitude]="location.latitude" [longitude]="location.longitude"></agm-marker>
-  </agm-map>
-</div> -->
-<div class="map">
-  <div class="form-group">
-    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search >
+
+<button type="button" (click)="hideMap=false" name="button">show map</button>
+<div class="overlay" [ngClass]="{'hide-map': hideMap}">
+  <div class="map-modal">
+    <div class="form-group">
+      <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search >
+    </div>
+    <div class="map-container">
+      <agm-map class="map" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+        <agm-marker [markerDraggable]="true" [latitude]="latitude" [longitude]="longitude" (dragEnd)="updateMarkerPos($event)"></agm-marker>
+      </agm-map>
+    </div>
+    <button class="send-location" type="button" (click)="staticMapUrl(15,310)">Send Location</button>
+    <button class="cancel-location" type="button" (click)="hideMap=true">Cancel</button>
   </div>
-  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-    <agm-marker [markerDraggable]="true" [latitude]="latitude" [longitude]="longitude" (dragEnd)="updateMarkerPos($event)"></agm-marker>
-  </agm-map>
-  {{latitude}}.........{{longitude}}
 </div>
+
+<img src="{{staticMap}}" alt="">
