@@ -85,8 +85,6 @@ export class LocationComponent implements OnInit {
     this.latitude = position.coords.lat;
   }
   private staticMapUrl(zoom,size){
-    console.log(this.longitude)
-    console.log(this.latitude)
     this.staticMap="http://maps.google.com/maps/api/staticmap?zoom="+zoom+"&size="+size+"x"+size+"&markers=color:red|"+this.latitude+","+this.longitude+"&mobile=true&sensor=false"
   }
 }
