@@ -1,0 +1,39 @@
+.rightside{
+  height: 100%;
+  background-color:#485361;
+}
+.rightside div{
+  color:#fff;
+  margin:0 auto;
+  text-align: center;
+  padding:25px 20px;
+  h1, p{
+    padding:0;
+    margin:0 20px;
+  }
+  p{
+    font-size: 20px;
+  }
+  img{
+    margin: 20px 0 ;
+    border-radius:50%;
+  }
+}
+.rightside .features{
+  border-top: 1px solid rgba(145, 150, 156, 0.25);
+  display:inline-block;
+  margin:0 auto;
+  .feature a{
+    padding:20px;
+    width:100px;
+    height:100px;
+    background:#2b3035;
+    float:left;
+    display:inline-block;
+    margin:30px;
+    border-radius:50%;
+    }
+  .feature i {
+    color:white;
+  }
+}
