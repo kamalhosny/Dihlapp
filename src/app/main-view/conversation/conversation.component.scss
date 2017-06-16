@@ -5,13 +5,22 @@
   height: 100%;
   overflow-y: scroll;
   padding: 20px;
-
-  :host >>> .emogi-image {
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
+  .conversation{
+     min-height: calc(100vh - 70px);
+    :host >>> .emogi-image {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+    }
+    .send-message{
+      height: 100px;
+      margin:10px auto;
+    }
   }
-  
+  div.emoji-search.top{
+    bottom:36px;
+  }
+
   .user {
     width: 100%;
     margin-top: 10px;

@@ -5,6 +5,8 @@ import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-upload
 import { MESSAGES } from './mock-message';
 import { Message } from './message.type';
 import { MessageService } from '../../services/message.service';
+import { LocationComponent } from './location/location.component';
+import { AgmCoreModule } from '@agm/core';
 
 @Component({
   selector: 'app-conversation',
@@ -13,6 +15,7 @@ import { MessageService } from '../../services/message.service';
   providers:[
     MessageService,
     FileUploadService,
+    LocationComponent
   ],
 })
 
@@ -90,11 +93,11 @@ export class ConversationComponent implements OnInit {
 
   onUploadOutput(output: UploadOutput): void {
     console.log(output);
-   
+
     if (output.type === 'allAddedToQueue') {
 
     } else if (output.type === 'addedToQueue') {
-      this.files.push(output.file); 
+      this.files.push(output.file);
 
     } else if (output.type === 'uploading') {
 
@@ -102,18 +105,18 @@ export class ConversationComponent implements OnInit {
       this.files[index] = output.file;
 
     } else if (output.type === 'removed') {
-        
+
       this.files = this.files.filter((file: UploadFile) => file !== output.file);
 
     } else if (output.type === 'dragOver') {
-       
+
       this.dragOver = true;
 
-    } else if (output.type === 'dragOut') { 
+    } else if (output.type === 'dragOut') {
 
       this.dragOver = false;
 
-    } else if (output.type === 'drop') { 
+    } else if (output.type === 'drop') {
 
       this.dragOver = false;
     }
@@ -138,19 +141,19 @@ export class ConversationComponent implements OnInit {
 
     reader.readAsDataURL(event.target.files[0]);
   }
-    
-  startUpload(): void {  
+
+  startUpload(): void {
     const event: UploadInput = {
       type: 'uploadAll',
       url: '/upload',
       method: 'POST',
       data: { foo: 'bar' },
-      concurrency: 1 
+      concurrency: 1
     }
-    
+
     this.uploadInput.emit(event);
   }
-    
+
   cancelUpload(id: string): void {
     this.uploadInput.emit({ type: 'cancel', id: id });
   }

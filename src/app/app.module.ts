@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { NgUploaderModule } from 'ngx-uploader';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
@@ -8,9 +7,8 @@ import { HttpModule } from '@angular/http';
 import { routes } from './app.routes';
 import { EmojiModule } from 'angular2-emoji';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
-
 import { AppComponent } from './app.component';
-import { LocationComponent } from './location/location.component';
+import { LocationComponent } from './main-view/conversation/location/location.component';
 import { AgmCoreModule } from '@agm/core';
 import { FormControl } from "@angular/forms";
 import { MainViewComponent } from './main-view/main-view.component';

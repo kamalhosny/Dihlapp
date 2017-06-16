@@ -1,7 +1,7 @@
-import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, NgZone, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { FormControl } from "@angular/forms";
-import { ModalModule } from "ngx-modal";
+
 
 @Component({
   moduleId: module.id,
@@ -16,14 +16,25 @@ export class LocationComponent implements OnInit {
   public zoom: number;
   location: any;
   staticMap: string;
-  hideMap: boolean;
+  public hideMap: boolean;
   @ViewChild("search")
   public searchElementRef: ElementRef;
+
+  @ViewChildren('myMap') viewChildren:QueryList<any>;
+
+doTriggerResize() {
+  this.viewChildren.toArray().forEach((e) => {
+    e.triggerResize();
+  });
+}
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
-  ) {}
+
+  ) {
+    this.mapsAPILoader.load()
+  }
 
   setPosition(position) {
     this.location = position.coords;
@@ -32,18 +43,11 @@ export class LocationComponent implements OnInit {
   }
   ngOnInit() {
     this.hideMap=true;
-    //set google maps defaults
-    this.zoom = 4;
-    // this.latitude = this.location;
-    // this.longitude = this.location;
-
-    //create search FormControl
+    this.zoom = 12;
     this.searchControl = new FormControl();
-
-    //set current position
-    this.setCurrentPosition();
-
-    //load Places Autocomplete
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+    };
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
@@ -57,7 +61,6 @@ export class LocationComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-
           //set latitude, longitude and zoom
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
@@ -65,20 +68,7 @@ export class LocationComponent implements OnInit {
         });
       });
     });
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
-    };
 
-  }
-  private setCurrentPosition() {
-
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 12;
-      });
-    }
   }
   private updateMarkerPos(position){
     this.longitude= position.coords.lng;
