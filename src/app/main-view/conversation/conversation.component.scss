@@ -11,23 +11,53 @@
     background-color: #F5F5F5;
     border-radius: 10px;
   }
+
   &::-webkit-scrollbar-thumb {
     background-color: #ccc;
     border-radius: 10px;
   }
+
   &::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     background-color: #F5F5F5;
   }
 
-  emoji-input {
+  form.send-message {
     position: absolute;
     bottom: 0;
-    margin-left: -20px;
     width: 50%;
+    emoji-input {
+      position: relative;
+      margin-left: -20px;
+      width: 90%;
+      float: left;
+    }
+    .att-button,
+    .submit-message{
+      position: relative;
+      display: inline-block;
+      float: left;
+      background-color: #fff;
+      height: 37px;
+      border-style: ridge;
+      border: 1px solid #ccc;
+      color: #e2e2e2;
+    }
+    .submit-message{
+      color: #777;
+    }
+    .attachment-menu{
+      position: absolute;
+      bottom: 110%;
+      right: 10%;
+      li{
+        list-style: none;
+        float: left;
+      }
+    }
+
   }
-  
-/*  .conversation {
+  /*  .conversation {
     .message {
       width: 50%;
     }
@@ -58,7 +88,7 @@
     }
 
     .you {
-      float: left;   
+      float: left;
       margin: 5px 45px 5px 5px;
       &::before {
         box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
@@ -67,7 +97,7 @@
     }
 
     .me {
-      float: right;    
+      float: right;
       margin: 5px 5px 5px 45px;
       &::before {
         box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
@@ -75,13 +105,11 @@
       }
     }
   }*/
-
-
-  :host >>> .emogi-image {
+  :host >  >  > .emogi-image {
     height: 60px;
     width: 60px;
     border-radius: 50%;
-/*  .conversation{
+    /*  .conversation{
      min-height: calc(100vh - 70px);
     :host >>> .emogi-image {
       height: 60px;
@@ -93,14 +121,16 @@
       margin:10px auto;
     }*/
   }
-  div.emoji-search.top{
-    bottom:36px;
+
+  div.emoji-search.top {
+    bottom: 36px;
   }
 
   .user {
     width: 100%;
     margin-top: 10px;
     float: left;
+
     img {
       float: left;
       border-radius: 50%;
@@ -118,10 +148,12 @@
       height: 16px;
     }
   }
+
   .current-user {
     width: 100%;
     margin-top: 10px;
     float: right;
+
     img {
       float: right;
       border-radius: 50%;
@@ -139,11 +171,8 @@
       height: 16px;
     }
   }
-  .hidden-menu {
-    display: none;
-  }
 }
+
 .hiddenUploadButton {
   display: none;
 }
-
