@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { routes } from './app.routes';
 import { EmojiModule } from 'angular2-emoji';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+import { DropdownModule } from 'ng2-dropdown';
 import { AppComponent } from './app.component';
 import { LocationComponent } from './main-view/conversation/location/location.component';
 import { AgmCoreModule } from '@agm/core';
@@ -42,6 +43,7 @@ import { ProfileupdateComponent } from './profileupdate/profileupdate.component'
     }),
     routes,
     EmojiModule,
+    DropdownModule,
     NgUploaderModule,
     Ng2FilterPipeModule
   ],

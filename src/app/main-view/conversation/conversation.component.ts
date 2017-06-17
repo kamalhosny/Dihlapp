@@ -38,7 +38,7 @@ export class ConversationComponent implements OnInit {
         content: 'Hello there',
         sent: true,
         seen: true,
-        timestamp: '11 June',
+        timestamp: '3:20 PM',
         user: {
           name: 'Joe',
           avatar: 'https://placeholdit.co//i/50x50'
@@ -49,7 +49,106 @@ export class ConversationComponent implements OnInit {
         content: 'salamo 3aleko',
         sent: false,
         seen: false,
-        timestamp: '11 June',
+        timestamp: '3:20 PM',
+        user: {
+          name: 'Kamal',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 3,
+        content: 'How are you?',
+        sent: true,
+        seen: true,
+        timestamp: '3:21 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 1,
+        content: 'Hello there',
+        sent: true,
+        seen: true,
+        timestamp: '3:21 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 2,
+        content: 'salamo 3aleko',
+        sent: false,
+        seen: false,
+        timestamp: '3:25 PM',
+        user: {
+          name: 'Kamal',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 3,
+        content: 'How are you?',
+        sent: true,
+        seen: true,
+        timestamp: '3:25 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 1,
+        content: 'Hello there',
+        sent: true,
+        seen: true,
+        timestamp: '4:33 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 2,
+        content: 'salamo 3aleko',
+        sent: false,
+        seen: false,
+        timestamp: '4:33 PM',
+        user: {
+          name: 'Kamal',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 3,
+        content: 'How are you?',
+        sent: true,
+        seen: true,
+        timestamp: '4:35 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 1,
+        content: 'Hello there',
+        sent: true,
+        seen: true,
+        timestamp: '5:15 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 2,
+        content: 'salamo 3aleko',
+        sent: false,
+        seen: false,
+        timestamp: '5:16 PM',
         user: {
           name: 'Kamal',
           avatar: 'https://placeholdit.co//i/50x50'
@@ -60,12 +159,12 @@ export class ConversationComponent implements OnInit {
         content: 'How are you?',
         sent: true,
         seen: false,
-        timestamp: '11 June',
+        timestamp: '5:18 PM',
         user: {
           name: 'Joe',
           avatar: 'https://placeholdit.co//i/50x50'
         }
-      }
+      },
     ];
   }
 

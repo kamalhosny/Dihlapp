@@ -7,7 +7,7 @@
     <div class="message" *ngFor="let message of messages" [ngClass]="message.user.name === 'Joe' ? 'current-user' : 'user'">
       <img src="{{message.user.avatar}}"/>
       <p>{{message.content}}</p>
-      <button (click)="deleteMessage(message.id)">Delete</button>
+      <!-- <button (click)="deleteMessage(message.id)">Delete</button> -->
       <p class="light">{{message.timestamp}}</p>
       <p class="seen" *ngIf="message.seen">
         <span class="fa-stack">
@@ -20,12 +20,14 @@
       </p>
     </div>
   </div>
+
   <form class="send-message" (submit)="sendMessage(message)" >
     <emoji-input>
       [onEnter]="onEnterFunction"
       [popupAnchor]="'bottom'"
       [(model)]="message.content">
     </emoji-input>
+    
     <!-- <button type="button" (click)="fakeClick()" class="uploadButton">Choose a file</button>
     <input type="file" (change)="changeListner($event)" class="hiddenUploadButton" id="fileSelector"> -->
     <!-- <textarea placeholder="Type your message" [(ngModel)]="message.content"></textarea> -->
