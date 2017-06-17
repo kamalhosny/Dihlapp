@@ -18,6 +18,7 @@ import { ConversationComponent } from './main-view/conversation/conversation.com
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
+import { RightbarComponent } from './main-view/rightbar/rightbar.component';
 
 
 @NgModule({
@@ -29,7 +30,9 @@ import { ProfileupdateComponent } from './profileupdate/profileupdate.component'
     AuthComponent,
     RegisterComponent,
     ProfileupdateComponent,
-    LocationComponent
+    LocationComponent,
+    RightbarComponent
+
   ],
   imports: [
     BrowserModule,
