@@ -9,15 +9,17 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class MessageService {
 
+  public apiUrl = 'http://localhost:3000';
+
   constructor(private http: Http) { }
 
-  getMessages() {
-    return this.http.get('http://jsonplaceholder.typicode.com/posts')
+  getMessages(conversation) {
+    return this.http.get(`${this.apiUrl}/conversations/${conversation}`)
                     .map(res => res.json().data)
   }
 
   postMessage(message) {
-    return this.http.post('http://jsonplaceholder.typicode.com/posts', message)
+    return this.http.post(`${this.apiUrl}/messages`, message)
                     .map(res => res.json().data)
   }
 

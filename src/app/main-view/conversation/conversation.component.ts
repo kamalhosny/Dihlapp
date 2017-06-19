@@ -7,6 +7,7 @@ import { Message } from './message.type';
 import { MessageService } from '../../services/message.service';
 import { LocationComponent } from './location/location.component';
 import { AgmCoreModule } from '@agm/core';
+import { Broadcaster } from 'ng2-cable/js/index';
 
 @Component({
   selector: 'app-conversation',
@@ -30,7 +31,7 @@ export class ConversationComponent implements OnInit {
   dragOver: boolean;
   tempImg: string;
   attachmentMenu: boolean = true;
-  constructor(private messageService: MessageService, private element: ElementRef) {
+  constructor(private messageService: MessageService, private element: ElementRef, private broadcaster: Broadcaster) {
     this.message = {} as Message;
     this.messages=[
       {
@@ -167,6 +168,14 @@ export class ConversationComponent implements OnInit {
       },
     ];
   }
+
+  // this.broadcaster.on<string>('CreateMessage').subscribe(
+  //   message => {
+  //     this.messages.push(message);
+  //     this.content.scrollToButtom();
+  //     console.log(message);
+  //   }
+  // );
 
 
   // show attachment small menu

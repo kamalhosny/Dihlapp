@@ -19,6 +19,7 @@ import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 import { RightbarComponent } from './main-view/rightbar/rightbar.component';
+import { Ng2Cable, Broadcaster } from 'ng2-cable/js/index';
 
 
 @NgModule({
@@ -49,6 +50,10 @@ import { RightbarComponent } from './main-view/rightbar/rightbar.component';
     DropdownModule,
     NgUploaderModule,
     Ng2FilterPipeModule
+  ],
+  providers: [
+    Ng2Cable,
+    Broadcaster
   ],
   bootstrap: [AppComponent]
 })

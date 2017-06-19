@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Ng2Cable } from 'ng2-cable/js/index';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app works!';
 
-  constructor() {
+  constructor(private ng2cable: Ng2Cable) {
+  	this.ng2cable.subscribe('http://localhost:3000/cable', 'NotificationChannel' )
   }
   
 }
