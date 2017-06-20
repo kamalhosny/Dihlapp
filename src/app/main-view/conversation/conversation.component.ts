@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, ElementRef } from '@angular/core';
+import {NgForm} from '@angular/forms';
 // import { FileUploadService } from '../../services/upload/file-upload.service';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 
@@ -180,9 +181,9 @@ export class ConversationComponent implements OnInit {
 
   // handle messages CRUD from the message service
   sendMessage(data) {
-    console.log(data);
-    this.messageService.postMessage(data)
-        .subscribe(messages => this.messages = messages);
+    // this.messageService.postMessage(data)
+        // .subscribe(messages => this.messages = messages);
+        console.log(data);
   }
 
   // deleteMessage(id) {

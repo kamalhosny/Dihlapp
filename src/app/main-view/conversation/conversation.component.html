@@ -21,8 +21,8 @@
     </div>
   </div>
 
-  <form class="send-message" (submit)="sendMessage(message)" >
-    <textarea></textarea>
+  <form class="send-message" (submit)="sendMessage(message)" role="form">
+    <textarea name="message"  [(ngModel)]="message.body" ></textarea>
       <div class="attachment-menu" [hidden]="attachmentMenu">
         <ul>
           <li>

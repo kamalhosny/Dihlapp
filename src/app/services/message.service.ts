@@ -18,8 +18,9 @@ export class MessageService {
   }
 
   postMessage(message) {
-    return this.http.post(AppSettings.API_ENDPOINT + 'messages', message)
-                    .map(res => res.json().data)
+    // return this.http.post(AppSettings.API_ENDPOINT + 'messages', message)
+    //                 .map(res => res.json().data)
+    console.log(message)
   }
 
   // destroyMessage(id) {
