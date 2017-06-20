@@ -15,14 +15,16 @@ export class RegisterComponent implements OnInit {
   private sub: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private registerService: RegisterService) {
-    this.registerData.token=location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
-
+    this.registerData.token = location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
+    this.registerData.email = localStorage.getItem('email');
   }
   addUser(){
     this.registerService.registerUser(this.registerData).subscribe(user => {
       this.user = user;
-    })
-  }
+      localStorage.removeItem('email');
+      console.log(localStorage.getItem('email'));
+    }
+  )}
   ngOnInit() {
     // this.sub = this.route.queryParams.subscribe(params => {
     //   // console.log(params);
