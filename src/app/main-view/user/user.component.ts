@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DropdownModule } from 'ng2-dropdown';
 import { MessageService } from '../../services/message.service';
+import { RouterModule, Routes } from '@angular/router';
+
 
 
 @Component({

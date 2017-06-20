@@ -27,9 +27,11 @@
           <button type="button">Delete chat</button>
         </div>
       </div>
-
-      <p class="contact-name">{{contact.name}}</p>
-      <p class="contact-message">{{contact.lastMessage}}</p>
+      <a routerLink="/{{contact.id}}">
+        <p class="contact-name">{{contact.name}}</p>
+        <p class="contact-message">{{contact.lastMessage}}</p>  
+      </a>
+      
       <p class="time-created">{{contact.lastMessageDate}}</p>
     </div>
   </section>
