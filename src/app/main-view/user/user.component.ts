@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DropdownModule } from 'ng2-dropdown';
+import { MessageService } from '../../services/message.service';
+
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
+  providers: [MessageService]
 })
 export class UserComponent implements OnInit {
   name: string;
@@ -13,7 +16,7 @@ export class UserComponent implements OnInit {
   contacts: contact[];
   contactFilter: any = { name: '' };
 
-  constructor() {
+  constructor(private messageService: MessageService) {
     this.contacts = [
       {
         name: 'Kamoola',
@@ -210,7 +213,9 @@ export class UserComponent implements OnInit {
     ]
    }
 
+
   ngOnInit() {
+    this.messageService.getConversations().subscribe(data => this.contacts = data)
   }
 
 }
