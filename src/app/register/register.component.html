@@ -1,5 +1,5 @@
 <div class="container col-sm-4 registration-form">
-  <form class="form-group" #form="ngForm">
+  <form class="form-group" #form="ngForm" (submit)="addUser()">
     <fieldset>
       <input type="text" class="form-control form-control-lg" name="first-name" id="first-name" [(ngModel)]="registerData.firstName" required />
       <label for="first-name" [ngClass]="{'stay': registerData.firstName.length > 0}">First name</label>
