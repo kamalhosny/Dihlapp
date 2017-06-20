@@ -1,0 +1,16 @@
+<div class="contacts">
+  <div class="search">
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <input type="text" name="search" placeholder="Search" [(ngModel)] = "contactSearch">
+  </div>
+  <hr>
+  <section class="contacts-list">
+    <div class="clearfix" *ngFor= "let contact of contacts">
+      <div class="user-status" [ngClass]="{green: contact.isOnline}"></div>
+      <img class="contact-avatar" src="{{contact.avatar}}">
+      <p class="contact-name">{{contact.name}}</p>
+      <p class="contact-message">{{contact.lastMessage}}</p>
+      <p class="time-created">{{contact.lastMessageDate}}</p>
+    </div>
+  </section>
+</div>
