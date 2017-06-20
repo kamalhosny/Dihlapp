@@ -1,0 +1,64 @@
+body{
+  background:#fff;
+}
+.redirectForm{
+  h1, p {
+    margin:0;
+    text-align: center;
+  }
+  h1{
+    font-size:70px;
+  }
+  p{
+    font-size: 25px;
+    margin-top:10px;;
+    font-weight:300;
+  }
+  form{
+    button{
+      width:80%;
+      padding:10px 35px;
+      margin-top:25px;
+      font-weight:500;
+      font-size:20px;
+      background: #476182;
+      color:white;
+      border: none;
+      display: block;
+      margin: 20px auto;
+    }
+    table{
+      text-align:center;
+      margin: 0 auto;
+      margin-top:50px;
+      label{
+        font-size:20px;
+        font-weight:400;
+      }
+      input{
+        width:400px;
+        height:50px;
+        outline-color: #476182;
+        margin:10px 10px;
+        padding:5px;
+        font-size:20px;
+      }
+      .avatar img {
+        height:100px;
+        width: 100px;
+        margin: 0 auto;
+        padding:0;
+        border-radius: 50%;
+        background-size:cover;
+        background-image: url("dummy-avatar.png");
+      }
+      .chooseFile{
+        display: inline-block;
+      }
+    }
+  }
+  color:#476182;
+  padding-top:20px;
+  width:700px;
+  margin:0 auto;
+}

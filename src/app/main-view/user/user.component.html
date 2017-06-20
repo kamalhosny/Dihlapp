@@ -1,0 +1,36 @@
+<div class="contacts">
+  <div class="search">
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <input type="text" name="search" placeholder="Search" [(ngModel)]="contactFilter.name" />
+  </div>
+
+  <div class="search-results" *ngIf="contactFilter.name.length > 0">
+    
+    <ul>
+      <li>
+        <a *ngFor="let contact of contacts | filterBy: contactFilter" class="">{{ contact.name }}</a>
+      </li>
+      <li *ngIf="(contacts | filterBy: contactFilter).length === 0">No matching contacts</li>
+    </ul>
+
+  </div>
+
+  <section class="contacts-list">
+    <div class="clearfix contact" *ngFor= "let contact of contacts">
+      <div class="user-status" [ngClass]="{green: contact.isOnline}"></div>
+      <img class="contact-avatar" src="{{contact.avatar}}">
+      
+      <div class="dropdown" dropdown [dropdownToggle]="true" (onOpen)="doSomeActionOnOpen()" (onClose)="doSomeActionOnClose()">
+        <i class="fa fa-caret-down" aria-hidden="true" dropdown-open></i>
+        <div class="conversation-menu dropdown-menu">
+          <button type="button">Mute chat</button>
+          <button type="button">Delete chat</button>
+        </div>
+      </div>
+
+      <p class="contact-name">{{contact.name}}</p>
+      <p class="contact-message">{{contact.lastMessage}}</p>
+      <p class="time-created">{{contact.lastMessageDate}}</p>
+    </div>
+  </section>
+</div>
