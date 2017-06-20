@@ -22,11 +22,7 @@
   </div>
 
   <form class="send-message" (submit)="sendMessage(message)" >
-      <emoji-input>
-        [onEnter]="onEnterFunction"
-        [popupAnchor]="'bottom'"
-        [(model)]="message.content">
-      </emoji-input>
+    <textarea></textarea>
       <div class="attachment-menu" [hidden]="attachmentMenu">
         <ul>
           <li>
@@ -39,8 +35,10 @@
           </li>
         </ul>
       </div>
+      <div class="buttons">
       <button class="att-button" name="attachment" type="button" (click)="showAttachmentMenu()"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
       <button type="submit" class="submit-message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+    </div>
     <!-- <button type="button" (click)="fakeClick()" class="uploadButton">Choose a file</button>
     <input type="file" (change)="changeListner($event)" class="hiddenUploadButton" id="fileSelector"> -->
     <!-- <textarea placeholder="Type your message" [(ngModel)]="message.content"></textarea> -->
