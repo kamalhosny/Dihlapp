@@ -28,7 +28,7 @@ export class AuthComponent implements OnInit {
       send: 'link',
       email: email
     }, function (error, response) {
-      console.log(response);
+      localStorage.setItem('email', response.email);
     });
   }
 }
