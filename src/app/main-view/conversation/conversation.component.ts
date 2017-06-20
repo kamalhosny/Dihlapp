@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, ElementRef } from '@angular/core';
-import { FileUploadService } from '../../services/upload/file-upload.service';
+// import { FileUploadService } from '../../services/upload/file-upload.service';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 
 import { MESSAGES } from './mock-message';
@@ -14,7 +14,7 @@ import { AgmCoreModule } from '@agm/core';
   styleUrls: ['./conversation.component.scss'],
   providers:[
     MessageService,
-    FileUploadService,
+    // FileUploadService,
     LocationComponent
   ],
 })
@@ -185,10 +185,10 @@ export class ConversationComponent implements OnInit {
         .subscribe(messages => this.messages = messages);
   }
 
-  deleteMessage(id) {
-    this.messageService.destroyMessage(id)
-        .subscribe(messages => this.messages = messages);
-  }
+  // deleteMessage(id) {
+  //   this.messageService.destroyMessage(id)
+  //       .subscribe(messages => this.messages = messages);
+  // }
 
   onUploadOutput(output: UploadOutput): void {
     console.log(output);
