@@ -10,6 +10,7 @@ import { FormControl } from "@angular/forms";
   styleUrls: ['./location.component.scss']
 })
 export class LocationComponent implements OnInit {
+  public coords: any = {};
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
@@ -22,11 +23,11 @@ export class LocationComponent implements OnInit {
 
   @ViewChildren('myMap') viewChildren:QueryList<any>;
 
-doTriggerResize() {
-  this.viewChildren.toArray().forEach((e) => {
-    e.triggerResize();
-  });
-}
+  doTriggerResize() {
+    this.viewChildren.toArray().forEach((e) => {
+      e.triggerResize();
+    });
+  }
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -38,8 +39,8 @@ doTriggerResize() {
 
   setPosition(position) {
     this.location = position.coords;
-    this.latitude=this.location.latitude;
-    this.longitude=this.location.longitude;
+    this.coords.latitude = this.location.latitude;
+    this.coords.longitude = this.location.longitude;
   }
   ngOnInit() {
     this.hideMap=true;
@@ -62,19 +63,23 @@ doTriggerResize() {
             return;
           }
           //set latitude, longitude and zoom
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
+          this.coords.latitude = place.geometry.location.lat();
+          this.coords.longitude = place.geometry.location.lng();
           this.zoom = 12;
         });
       });
     });
+  }
 
-  }
   private updateMarkerPos(position){
-    this.longitude= position.coords.lng;
-    this.latitude = position.coords.lat;
+    this.coords.longitude = position.coords.lng;
+    this.coords.latitude = position.coords.lat;
   }
+
   private staticMapUrl(zoom,size){
-    this.staticMap="http://maps.google.com/maps/api/staticmap?zoom="+zoom+"&size="+size+"x"+size+"&markers=color:red|"+this.latitude+","+this.longitude+"&mobile=true&sensor=false"
+    this.staticMap = "http://maps.google.com/maps/api/staticmap?zoom="+zoom+"&size="+size+"x"+size+"&markers=color:red|"+this.coords.latitude+","+this.coords.longitude+"&mobile=true&sensor=false"
+
+    localStorage.setItem('coords', JSON.stringify(this.coords));
   }
+
 }

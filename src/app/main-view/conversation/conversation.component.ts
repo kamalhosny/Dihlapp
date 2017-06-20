@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {NgForm} from '@angular/forms';
 // import { FileUploadService } from '../../services/upload/file-upload.service';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
@@ -23,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 export class ConversationComponent implements OnInit {
   message: Message;
   messages: Message[];
+  messageData: any = {};
   showMap: boolean =false;
   formData: FormData;
   files: UploadFile[];
@@ -31,9 +33,14 @@ export class ConversationComponent implements OnInit {
   dragOver: boolean;
   tempImg: string;
   attachmentMenu: boolean = true;
-  constructor(private messageService: MessageService, private element: ElementRef) {
+
+  constructor(private messageService: MessageService,
+              private element: ElementRef,
+              private route: ActivatedRoute) {
+
     this.message = {} as Message;
-    this.messages=[
+    this.messageData.message = {};
+    this.messages = [
       {
         id: 1,
         content: 'Hello there',
@@ -180,10 +187,21 @@ export class ConversationComponent implements OnInit {
   }
 
   // handle messages CRUD from the message service
-  sendMessage(data) {
-    // this.messageService.postMessage(data)
-        // .subscribe(messages => this.messages = messages);
-        console.log(data);
+  sendMessage() {
+
+    // get conversation id
+    // this.route.params.subscribe(params => {
+    //   this.messageData.conversation_id = params['conversation_id'];
+    // })
+
+    let coords = JSON.parse(localStorage.getItem('coords'));
+    this.messageData.message.location_attributes = coords;
+
+    this.messageService.postMessage(this.messageData)
+        .subscribe(message => {
+          console.log(message);
+          localStorage.removeItem('coords');
+        });
   }
 
   // deleteMessage(id) {
