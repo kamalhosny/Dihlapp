@@ -10,7 +10,7 @@ import { ConversationComponent } from './main-view/conversation/conversation.com
 const appRoutes: Routes = [
   {
     path: '',
-    component: MainViewComponent
+    component: ConversationComponent
   },
   {
     path: 'register',
