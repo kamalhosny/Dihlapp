@@ -5,6 +5,7 @@ import { MainViewComponent } from './main-view/main-view.component';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
+import { ConversationComponent } from './main-view/conversation/conversation.component'
 
 const appRoutes: Routes = [
   {
@@ -18,6 +19,10 @@ const appRoutes: Routes = [
   {
     path: 'sign_in',
     component: AuthComponent
+  },
+  {
+    path: 'conversation/:id',
+    component: ConversationComponent
   },
   {
     // needs to update this route ont the website, too.

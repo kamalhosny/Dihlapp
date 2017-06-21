@@ -12,8 +12,13 @@ export class MessageService {
 
   constructor(private http: Http) { }
 
+  getConversations() {
+    return this.http.get(AppSettings.API_ENDPOINT + 'conversations')
+                    .map(res => res.json().data)
+  }
+
   getMessages(id) {
-    return this.http.get(AppSettings.API_ENDPOINT + 'conversation/'+id)
+    return this.http.get(AppSettings.API_ENDPOINT + 'conversations/'+id)
                     .map(res => res.json().data)
   }
 
