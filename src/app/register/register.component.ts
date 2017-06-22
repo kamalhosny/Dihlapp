@@ -1,37 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { RegisterService } from './register.service';
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [ AuthService ]
+  providers: [ RegisterService ]
 })
 export class RegisterComponent implements OnInit {
   user: any = {};
   registerData: any = {};
   private sub: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {
-    this.registerData.token = localStorage.getItem('token');
+  constructor(private router: Router, private route: ActivatedRoute, private registerService: RegisterService) {
+    this.registerData.token = location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
     this.registerData.email = localStorage.getItem('email');
   }
-
-
+  addUser(){
+    this.registerService.registerUser(this.registerData).subscribe(user => {
+      this.user = user;
+      localStorage.removeItem('email');
+      console.log(localStorage.getItem('email'));
+    }
+  )}
   ngOnInit() {
     // this.sub = this.route.queryParams.subscribe(params => {
     //   // console.log(params);
     //   // this.registerData.token = params['access_token'];
     // });
 
-  }
-
-  registerUser() {
-    this.authService.registerUser(this.registerData).subscribe(user => {
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      this.router.navigate(['']);
-    })
   }
 }
