@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, ElementRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import {NgForm} from '@angular/forms';
 // import { FileUploadService } from '../../services/upload/file-upload.service';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
@@ -9,7 +9,6 @@ import { Message } from './message.type';
 import { MessageService } from '../../services/message.service';
 import { LocationComponent } from './location/location.component';
 import { AgmCoreModule } from '@agm/core';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-conversation',
@@ -18,8 +17,7 @@ import { AuthService } from '../../services/auth.service';
   providers:[
     MessageService,
     // FileUploadService,
-    LocationComponent,
-    AuthService
+    LocationComponent
   ],
 })
 
@@ -27,7 +25,6 @@ export class ConversationComponent implements OnInit {
   message: Message;
   messages: Message[];
   messageData: any = {};
-  // updateTokenData: any = {};
   showMap: boolean =false;
   formData: FormData;
   files: UploadFile[];
@@ -39,14 +36,7 @@ export class ConversationComponent implements OnInit {
 
   constructor(private messageService: MessageService,
               private element: ElementRef,
-              private route: ActivatedRoute,
-              private router: Router,
-              private authService: AuthService) {
-
-    if (location.hash) {
-      let token = location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
-      localStorage.setItem('token', token);
-    }
+              private route: ActivatedRoute) {
 
     this.message = {} as Message;
     this.messageData.message = {};
@@ -209,6 +199,7 @@ export class ConversationComponent implements OnInit {
 
     this.messageService.postMessage(this.messageData)
         .subscribe(message => {
+          console.log(message);
           localStorage.removeItem('coords');
         });
   }
