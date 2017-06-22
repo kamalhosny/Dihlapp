@@ -22,6 +22,8 @@ import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 import { RightbarComponent } from './main-view/rightbar/rightbar.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,10 @@ import { RightbarComponent } from './main-view/rightbar/rightbar.component';
     NgUploaderModule,
     Ng2FilterPipeModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    AuthGuard,
+    AuthService
+  ]
 })
 export class AppModule { }

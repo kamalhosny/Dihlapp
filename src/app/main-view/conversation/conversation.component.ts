@@ -1,17 +1,17 @@
+
 import { Component, ElementRef, EventEmitter, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UploadFile, UploadInput, UploadOutput, humanizeBytes } from 'ngx-uploader';
 import { AgmCoreModule } from '@agm/core';
 import { Broadcaster, Ng2Cable } from 'ng2-cable/js/index';
-
-
 import { MESSAGES } from './mock-message';
 import { Message } from './message.type';
 import { MessageService } from '../../services/message.service';
 import { LocationComponent } from './location/location.component';
-// import { FileUploadService } from '../../services/upload/file-upload.service';
-// @importPlaceholder@
+import { AgmCoreModule } from '@agm/core';
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-conversation',
   templateUrl: './conversation.component.html',
@@ -21,7 +21,8 @@ import { LocationComponent } from './location/location.component';
     Ng2Cable,
     Broadcaster,
     // FileUploadService,
-    LocationComponent
+    LocationComponent,
+    AuthService
   ],
 })
 
@@ -30,6 +31,7 @@ export class ConversationComponent implements OnInit {
   messages: Message[];
   conversation_id: number;
   messageData: any = {};
+  // updateTokenData: any = {};
   showMap: boolean =false;
   formData: FormData;
   files: UploadFile[];
@@ -43,11 +45,22 @@ export class ConversationComponent implements OnInit {
               private element: ElementRef,
               private route: ActivatedRoute,
               public ng2cable: Ng2Cable,
-              public broadcaster: Broadcaster)
-  {
+              public broadcaster: Broadcaster,
+              private router: Router,
+              private authService: AuthService) {
       // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
       // By default event name is 'channel name'. But you can pass from backend field { action: 'MyEventName'}
   this.messageData.message = {};
+  }
+
+    if (location.hash) {
+      let token = location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
+      localStorage.setItem('token', token);
+    }
+
+    this.message = {} as Message;
+    this.messageData.message = {};
+    this.messages = [];
   }
 
 
@@ -75,7 +88,6 @@ export class ConversationComponent implements OnInit {
     console.log(this.messageData)
     this.messageService.postMessage(this.messageData)
         .subscribe(message => {
-          console.log(message);
           localStorage.removeItem('coords');
         });
   }
