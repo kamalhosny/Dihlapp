@@ -18,7 +18,7 @@ export class MessageService {
   }
 
   getMessages(id) {
-    return this.http.get(AppSettings.API_ENDPOINT + 'conversations/'+id)
+    return this.http.get(AppSettings.API_ENDPOINT + 'conversations/'+id + 'messages')
                     .map(res => res.json().data)
   }
 

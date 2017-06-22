@@ -10,7 +10,7 @@ import { Message } from './message.type';
 import { MessageService } from '../../services/message.service';
 import { LocationComponent } from './location/location.component';
 // import { FileUploadService } from '../../services/upload/file-upload.service';
-@importPlaceholder@
+// @importPlaceholder@
 @Component({
   selector: 'app-conversation',
   templateUrl: './conversation.component.html',
@@ -26,7 +26,7 @@ import { LocationComponent } from './location/location.component';
 
 export class ConversationComponent implements OnInit {
   message: Message;
-  messages: Message[];
+  messages: Message;
   conversation_id: number;
   messageData: any = {};
   showMap: boolean =false;
@@ -46,21 +46,20 @@ export class ConversationComponent implements OnInit {
   {
     this.route.params.subscribe(params => {
       this.conversation_id = params['id'];
-    })
+      console.log(this.conversation_id)
+
     this.messageService.getMessages(this.conversation_id).subscribe(messages => {
-      console.log(">>>>>>>>>>>>>>>>")
-      console.log(messages)
+      // console.log(">>>>>>>>>>>>>>>>")
       this.messages = messages
-      debugger
-    },
-    error=>{
-      console.log(error)
+      console.log(this.messages)
+      // this.ng2cable.subscribe('http://localhost:3000/cable', 'ChatChannel');
+    })
     }
   );
-    // this.ng2cable.subscribe('http://localhost:3000/cable', 'ChatChannel');
+  this.message = {} as Message;
+  this.messageData.message = {};
+  console.log(this.messages)
 
-    this.message = {} as Message;
-    this.messageData.message = {};
     // this.messages = [
     //   {
     //     id: 1,
