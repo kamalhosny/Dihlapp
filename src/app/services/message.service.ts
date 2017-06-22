@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import { Message } from '../main-view/conversation/message.type';
 import { MESSAGES } from '../main-view/conversation/mock-message';
@@ -18,8 +19,8 @@ export class MessageService {
   }
 
   getMessages(id) {
-    return this.http.get(AppSettings.API_ENDPOINT + 'conversations/'+id)
-                    .map(res => res.json().data)
+    return this.http.get(AppSettings.API_ENDPOINT + 'conversations/'+ id)
+                    .map(res => res.json())
   }
 
   postMessage(message) {
