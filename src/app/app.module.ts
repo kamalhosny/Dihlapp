@@ -10,6 +10,7 @@ import { DropdownModule } from 'ng2-dropdown';
 import { AgmCoreModule } from '@agm/core';
 import { FormControl } from '@angular/forms';
 import { Broadcaster, Ng2Cable } from 'ng2-cable/js/index';
+import { Observable } from 'rxjs/Observable';
 
 import { routes } from './app.routes';
 import { AppComponent } from './app.component';
@@ -21,8 +22,8 @@ import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 import { RightbarComponent } from './main-view/rightbar/rightbar.component';
-@NgModule({
 
+@NgModule({
   declarations: [
     AppComponent,
     MainViewComponent,
@@ -32,7 +33,7 @@ import { RightbarComponent } from './main-view/rightbar/rightbar.component';
     RegisterComponent,
     ProfileupdateComponent,
     LocationComponent,
-    RightbarComponent
+    RightbarComponent,
 
   ],
   imports: [

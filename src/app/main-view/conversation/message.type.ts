@@ -1,10 +1,11 @@
 export interface Message {
   id: number;
-  content: string;
+  body: string;
   sent: boolean;
   seen: boolean;
   timestamp: string;
   user: User;
+  conversation_id:number;
 }
 
 interface User {

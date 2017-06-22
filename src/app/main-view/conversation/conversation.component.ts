@@ -5,6 +5,7 @@ import { UploadFile, UploadInput, UploadOutput, humanizeBytes } from 'ngx-upload
 import { AgmCoreModule } from '@agm/core';
 import { Broadcaster, Ng2Cable } from 'ng2-cable/js/index';
 
+
 import { MESSAGES } from './mock-message';
 import { Message } from './message.type';
 import { MessageService } from '../../services/message.service';
@@ -44,15 +45,24 @@ export class ConversationComponent implements OnInit {
               public ng2cable: Ng2Cable,
               public broadcaster: Broadcaster)
   {
+      // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
+      //By default event name is 'channel name'. But you can pass from backend field { action: 'MyEventName'}
+
+
     this.route.params.subscribe(params => {
       this.conversation_id = params['id'];
       console.log(this.conversation_id)
 
     this.messageService.getMessages(this.conversation_id).subscribe(messages => {
-      // console.log(">>>>>>>>>>>>>>>>")
+      console.log(">>>>>>>>>>>>>>>>")
       this.messages = messages
-      console.log(this.messages)
-      // this.ng2cable.subscribe('http://localhost:3000/cable', 'ChatChannel');
+      this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
+      this.broadcaster.on<string>('ChatChannel').subscribe(
+        message => {
+          console.log(message);
+        }
+      );
+      console.log(messages)
     })
     }
   );
