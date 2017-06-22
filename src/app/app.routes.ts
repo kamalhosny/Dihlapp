@@ -14,6 +14,7 @@ const appRoutes: Routes = [
   { path: 'sign_in', component: AuthComponent },
   { path: 'conversation/:id', component: ConversationComponent, canActivate: [AuthGuard] },
 
+
     // needs to update this route ont the website, too.
   { path: 'updateprofile', component: ProfileupdateComponent, canActivate: [AuthGuard] }
 ]
