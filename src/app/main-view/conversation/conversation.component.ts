@@ -9,7 +9,6 @@ import { MESSAGES } from './mock-message';
 import { Message } from './message.type';
 import { MessageService } from '../../services/message.service';
 import { LocationComponent } from './location/location.component';
-import { AgmCoreModule } from '@agm/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -17,12 +16,11 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './conversation.component.html',
   styleUrls: ['./conversation.component.scss'],
   providers:[
-    MessageService,
-    Ng2Cable,
-    Broadcaster,
-    // FileUploadService,
-    LocationComponent,
-    AuthService
+  MessageService,
+  Ng2Cable,
+  Broadcaster,
+  LocationComponent,
+  AuthService
   ],
 })
 
@@ -32,7 +30,6 @@ export class ConversationComponent implements OnInit {
   msg: Message;
   conversation_id: number;
   messageData: any = {};
-  // updateTokenData: any = {};
   showMap: boolean =false;
   formData: FormData;
   files: UploadFile[];
@@ -43,64 +40,62 @@ export class ConversationComponent implements OnInit {
   attachmentMenu: boolean = true;
 
   constructor(private messageService: MessageService,
-              private element: ElementRef,
-              private route: ActivatedRoute,
-              public ng2cable: Ng2Cable,
-              public broadcaster: Broadcaster,
-              private router: Router,
-              private authService: AuthService) {
-      // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
-      // By default event name is 'channel name'. But you can pass from backend field { action: 'MyEventName'}
-  this.messageData.message = {};
-  this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
-  this.broadcaster.on<any>('ChatChannel').subscribe(
-    data => {
-      this.messages.push(data.body);
-      // this.messages.push(data.body);
-    }
-  );
-  }
-
-    if (location.hash) {
-      let token = location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
-      localStorage.setItem('token', token);
-    }
-
-    this.message = {} as Message;
+    private element: ElementRef,
+    private route: ActivatedRoute,
+    public ng2cable: Ng2Cable,
+    public broadcaster: Broadcaster) {
+    // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
+    // By default event name is 'channel name'. But you can pass from backend field { action: 'MyEventName'}
     this.messageData.message = {};
-    this.messages = [];
+    this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
+    this.broadcaster.on<any>('ChatChannel').subscribe(
+      data => {
+        this.messages.push(data.body);
+        // this.messages.push(data.body);
+      }
+      );
+  
+
+  if (location.hash) {
+    let token = location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
+    localStorage.setItem('token', token);
   }
 
+  this.message = {} as Message;
+  this.messageData.message = {};
+  this.messages = [];
+}
 
-  // show attachment small menu
-  showAttachmentMenu() {
-    if (this.attachmentMenu === true) {
-      this.attachmentMenu = false;
-    } else {
-      this.attachmentMenu = true;
-    }
+
+// show attachment small menu
+showAttachmentMenu() {
+  if (this.attachmentMenu === true) {
+    this.attachmentMenu = false;
+  } else {
+    this.attachmentMenu = true;
   }
+}
 
-  // handle messages CRUD from the message service
-  sendMessage() {
+// handle messages CRUD from the message service
+sendMessage() {
 
-    // get conversation id
-    this.route.params.subscribe(params => {
-      this.messageData.conversation_id = params['id'];
-    })
-    this.messageData.users = [{id: 2}];
-    // this.messageData.conversation_id=this.route.params.value;
+  // get conversation id
+  this.route.params.subscribe(params => {
+    this.messageData.conversation_id = params['id'];
+  })
+  this.messageData.users = [{id: 2}];
+  // this.messageData.conversation_id=this.route.params.value;
 
-    let coords = JSON.parse(localStorage.getItem('coords'));
-    this.messageData.message.location_attributes = coords;
-    console.log(this.messageData)
-    this.messageService.postMessage(this.messageData)
-        .subscribe(message => {
-          localStorage.removeItem('coords');
-        });
-  }
+  let coords = JSON.parse(localStorage.getItem('coords'));
+  this.messageData.message.location_attributes = coords;
+  console.log(this.messageData)
+  this.messageService.postMessage(this.messageData)
+  .subscribe(message => {
+    localStorage.removeItem('coords');
+  });
+}
 
-  // deleteMessage(id) {
+// deleteMessage(id) {
   //   this.messageService.destroyMessage(id)
   //       .subscribe(messages => this.messages = messages);
   // }
