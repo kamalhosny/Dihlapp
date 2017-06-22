@@ -29,6 +29,7 @@ import { AuthService } from '../../services/auth.service';
 export class ConversationComponent implements OnInit {
   message: Message;
   messages: Message[];
+  msg: Message;
   conversation_id: number;
   messageData: any = {};
   // updateTokenData: any = {};
@@ -51,6 +52,13 @@ export class ConversationComponent implements OnInit {
       // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
       // By default event name is 'channel name'. But you can pass from backend field { action: 'MyEventName'}
   this.messageData.message = {};
+  this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
+  this.broadcaster.on<any>('ChatChannel').subscribe(
+    data => {
+      this.messages.push(data.body);
+      // this.messages.push(data.body);
+    }
+  );
   }
 
     if (location.hash) {
@@ -170,12 +178,6 @@ export class ConversationComponent implements OnInit {
     })
     this.messageService.getMessages(this.conversation_id).subscribe(messages => {
       this.messages = messages
-      // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
-      // this.broadcaster.on<string>('ChatChannel').subscribe(
-      //   message => {
-      //     console.log(message);
-      //   }
-      // );
       console.log(messages)
     })
   }
