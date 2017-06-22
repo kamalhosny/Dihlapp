@@ -1,13 +1,13 @@
 <div class="container col-sm-4 registration-form">
-  <form class="form-group" #form="ngForm" (submit)="addUser()">
+  <form class="form-group" #form="ngForm" (submit)="registerUser()">
     <fieldset>
-      <input type="text" class="form-control form-control-lg" name="first-name" id="first-name" [(ngModel)]="registerData.firstName" required />
-      <label for="first-name" [ngClass]="{'stay': registerData.firstName.length > 0}">First name</label>
+      <input type="text" class="form-control form-control-lg" name="first-name" id="first-name" [(ngModel)]="registerData.first_name" required />
+      <label for="first-name" [ngClass]="{'stay': registerData.first_name.length > 0}">First name</label>
     </fieldset>
 
     <fieldset>
-      <input type="text" class="form-control form-control-lg" name="last-name" id="last-name" [(ngModel)]="registerData.lastName" required />
-      <label for="last-name" [ngClass]="{'stay': registerData.lastName.length > 0}">Last name</label>
+      <input type="text" class="form-control form-control-lg" name="last-name" id="last-name" [(ngModel)]="registerData.last_name" required />
+      <label for="last-name" [ngClass]="{'stay': registerData.last_name.length > 0}">Last name</label>
     </fieldset>
 
     <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
