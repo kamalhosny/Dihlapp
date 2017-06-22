@@ -27,7 +27,7 @@ import { LocationComponent } from './location/location.component';
 
 export class ConversationComponent implements OnInit {
   message: Message;
-  messages: Message;
+  messages: Message[];
   conversation_id: number;
   messageData: any = {};
   showMap: boolean =false;
@@ -46,164 +46,8 @@ export class ConversationComponent implements OnInit {
               public broadcaster: Broadcaster)
   {
       // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
-      //By default event name is 'channel name'. But you can pass from backend field { action: 'MyEventName'}
-
-
-    this.route.params.subscribe(params => {
-      this.conversation_id = params['id'];
-      console.log(this.conversation_id)
-
-    this.messageService.getMessages(this.conversation_id).subscribe(messages => {
-      console.log(">>>>>>>>>>>>>>>>")
-      this.messages = messages
-      this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
-      this.broadcaster.on<string>('ChatChannel').subscribe(
-        message => {
-          console.log(message);
-        }
-      );
-      console.log(messages)
-    })
-    }
-  );
-  this.message = {} as Message;
+      // By default event name is 'channel name'. But you can pass from backend field { action: 'MyEventName'}
   this.messageData.message = {};
-  console.log(this.messages)
-
-    // this.messages = [
-    //   {
-    //     id: 1,
-    //     content: 'Hello there',
-    //     sent: true,
-    //     seen: true,
-    //     timestamp: '3:20 PM',
-    //     user: {
-    //       name: 'Joe',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 2,
-    //     content: 'salamo 3aleko',
-    //     sent: false,
-    //     seen: false,
-    //     timestamp: '3:20 PM',
-    //     user: {
-    //       name: 'Kamal',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 3,
-    //     content: 'How are you?',
-    //     sent: true,
-    //     seen: true,
-    //     timestamp: '3:21 PM',
-    //     user: {
-    //       name: 'Joe',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 1,
-    //     content: 'Hello there',
-    //     sent: true,
-    //     seen: true,
-    //     timestamp: '3:21 PM',
-    //     user: {
-    //       name: 'Joe',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 2,
-    //     content: 'salamo 3aleko',
-    //     sent: false,
-    //     seen: false,
-    //     timestamp: '3:25 PM',
-    //     user: {
-    //       name: 'Kamal',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 3,
-    //     content: 'How are you?',
-    //     sent: true,
-    //     seen: true,
-    //     timestamp: '3:25 PM',
-    //     user: {
-    //       name: 'Joe',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 1,
-    //     content: 'Hello there',
-    //     sent: true,
-    //     seen: true,
-    //     timestamp: '4:33 PM',
-    //     user: {
-    //       name: 'Joe',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 2,
-    //     content: 'salamo 3aleko',
-    //     sent: false,
-    //     seen: false,
-    //     timestamp: '4:33 PM',
-    //     user: {
-    //       name: 'Kamal',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 3,
-    //     content: 'How are you?',
-    //     sent: true,
-    //     seen: true,
-    //     timestamp: '4:35 PM',
-    //     user: {
-    //       name: 'Joe',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 1,
-    //     content: 'Hello there',
-    //     sent: true,
-    //     seen: true,
-    //     timestamp: '5:15 PM',
-    //     user: {
-    //       name: 'Joe',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 2,
-    //     content: 'salamo 3aleko',
-    //     sent: false,
-    //     seen: false,
-    //     timestamp: '5:16 PM',
-    //     user: {
-    //       name: 'Kamal',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    //   {
-    //     id: 3,
-    //     content: 'How are you?',
-    //     sent: true,
-    //     seen: false,
-    //     timestamp: '5:18 PM',
-    //     user: {
-    //       name: 'Joe',
-    //       avatar: 'https://placeholdit.co//i/50x50'
-    //     }
-    //   },
-    // ];
   }
 
 
@@ -309,6 +153,19 @@ export class ConversationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.conversation_id = params['id'];
+    })
+    this.messageService.getMessages(this.conversation_id).subscribe(messages => {
+      this.messages = messages
+      // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
+      // this.broadcaster.on<string>('ChatChannel').subscribe(
+      //   message => {
+      //     console.log(message);
+      //   }
+      // );
+      console.log(messages)
+    })
   }
 
 }
