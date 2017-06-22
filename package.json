@@ -32,7 +32,6 @@
     "auth0-lock-passwordless": "^2.2.3",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
-    "ng2-cable": "^1.1.4",
     "ng2-dropdown": "0.0.21",
     "ng2-emoji": "^0.2.0",
     "ng2-filter-pipe": "^0.1.10",
