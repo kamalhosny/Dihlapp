@@ -20,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 import { RightbarComponent } from './main-view/rightbar/rightbar.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -52,6 +53,9 @@ import { AuthGuard } from './guards/auth.guard';
     Ng2FilterPipeModule
   ],
   bootstrap: [AppComponent],
-  providers: [AuthGuard]
+  providers: [
+    AuthGuard,
+    AuthService
+  ]
 })
 export class AppModule { }
