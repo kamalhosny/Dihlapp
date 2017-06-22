@@ -1,10 +1,9 @@
-
-import { Component, ElementRef, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { UploadFile, UploadInput, UploadOutput, humanizeBytes } from 'ngx-uploader';
-import { AgmCoreModule } from '@agm/core';
-import { Broadcaster, Ng2Cable } from 'ng2-cable/js/index';
+import {NgForm} from '@angular/forms';
+// import { FileUploadService } from '../../services/upload/file-upload.service';
+import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
+
 import { MESSAGES } from './mock-message';
 import { Message } from './message.type';
 import { MessageService } from '../../services/message.service';
@@ -18,8 +17,6 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./conversation.component.scss'],
   providers:[
     MessageService,
-    Ng2Cable,
-    Broadcaster,
     // FileUploadService,
     LocationComponent,
     AuthService
@@ -29,7 +26,6 @@ import { AuthService } from '../../services/auth.service';
 export class ConversationComponent implements OnInit {
   message: Message;
   messages: Message[];
-  conversation_id: number;
   messageData: any = {};
   // updateTokenData: any = {};
   showMap: boolean =false;
@@ -44,14 +40,8 @@ export class ConversationComponent implements OnInit {
   constructor(private messageService: MessageService,
               private element: ElementRef,
               private route: ActivatedRoute,
-              public ng2cable: Ng2Cable,
-              public broadcaster: Broadcaster,
               private router: Router,
               private authService: AuthService) {
-      // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
-      // By default event name is 'channel name'. But you can pass from backend field { action: 'MyEventName'}
-  this.messageData.message = {};
-  }
 
     if (location.hash) {
       let token = location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
@@ -60,7 +50,140 @@ export class ConversationComponent implements OnInit {
 
     this.message = {} as Message;
     this.messageData.message = {};
-    this.messages = [];
+    this.messages = [
+      {
+        id: 1,
+        content: 'Hello there',
+        sent: true,
+        seen: true,
+        timestamp: '3:20 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 2,
+        content: 'salamo 3aleko',
+        sent: false,
+        seen: false,
+        timestamp: '3:20 PM',
+        user: {
+          name: 'Kamal',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 3,
+        content: 'How are you?',
+        sent: true,
+        seen: true,
+        timestamp: '3:21 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 1,
+        content: 'Hello there',
+        sent: true,
+        seen: true,
+        timestamp: '3:21 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 2,
+        content: 'salamo 3aleko',
+        sent: false,
+        seen: false,
+        timestamp: '3:25 PM',
+        user: {
+          name: 'Kamal',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 3,
+        content: 'How are you?',
+        sent: true,
+        seen: true,
+        timestamp: '3:25 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 1,
+        content: 'Hello there',
+        sent: true,
+        seen: true,
+        timestamp: '4:33 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 2,
+        content: 'salamo 3aleko',
+        sent: false,
+        seen: false,
+        timestamp: '4:33 PM',
+        user: {
+          name: 'Kamal',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 3,
+        content: 'How are you?',
+        sent: true,
+        seen: true,
+        timestamp: '4:35 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 1,
+        content: 'Hello there',
+        sent: true,
+        seen: true,
+        timestamp: '5:15 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 2,
+        content: 'salamo 3aleko',
+        sent: false,
+        seen: false,
+        timestamp: '5:16 PM',
+        user: {
+          name: 'Kamal',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+      {
+        id: 3,
+        content: 'How are you?',
+        sent: true,
+        seen: false,
+        timestamp: '5:18 PM',
+        user: {
+          name: 'Joe',
+          avatar: 'https://placeholdit.co//i/50x50'
+        }
+      },
+    ];
   }
 
 
@@ -77,15 +200,13 @@ export class ConversationComponent implements OnInit {
   sendMessage() {
 
     // get conversation id
-    this.route.params.subscribe(params => {
-      this.messageData.conversation_id = params['id'];
-    })
-    this.messageData.users = [{id: 2}];
-    // this.messageData.conversation_id=this.route.params.value;
+    // this.route.params.subscribe(params => {
+    //   this.messageData.conversation_id = params['conversation_id'];
+    // })
 
     let coords = JSON.parse(localStorage.getItem('coords'));
     this.messageData.message.location_attributes = coords;
-    console.log(this.messageData)
+
     this.messageService.postMessage(this.messageData)
         .subscribe(message => {
           localStorage.removeItem('coords');
@@ -165,19 +286,7 @@ export class ConversationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.conversation_id = params['id'];
-    })
-    this.messageService.getMessages(this.conversation_id).subscribe(messages => {
-      this.messages = messages
-      // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
-      // this.broadcaster.on<string>('ChatChannel').subscribe(
-      //   message => {
-      //     console.log(message);
-      //   }
-      // );
-      console.log(messages)
-    })
+    // this.messageService.getMessages().subscribe(messages => this.messages = messages);
   }
 
 }
