@@ -44,23 +44,18 @@ export class ConversationComponent implements OnInit {
     private route: ActivatedRoute,
     public ng2cable: Ng2Cable,
     public broadcaster: Broadcaster) {
-    // this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
-    // By default event name is 'channel name'. But you can pass from backend field { action: 'MyEventName'}
-    this.messageData.message = {};
     this.ng2cable.subscribe('ws://localhost:3000/cable', 'ChatChannel');
     this.broadcaster.on<any>('ChatChannel').subscribe(
       data => {
         this.messages.push(data.body);
-        // this.messages.push(data.body);
       }
       );
-  
-  // ignore the below if statement as joe needs to look into it again
+
+  // ignore the code below if statement as joe needs to look into it again
   if (location.hash) {
     let token = location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
     localStorage.setItem('token', token);
   }
-
   this.message = {} as Message;
   this.messageData.message = {};
   this.messages = [];
@@ -163,7 +158,7 @@ sendMessage() {
 
     this.uploadInput.emit(event);
   }
-
+// not yet implemented in the frontend
   cancelUpload(id: string): void {
     this.uploadInput.emit({ type: 'cancel', id: id });
   }

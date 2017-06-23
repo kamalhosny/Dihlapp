@@ -9,14 +9,17 @@ import { ConversationComponent } from './main-view/conversation/conversation.com
 import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
-  { path: '', component: ConversationComponent, canActivate: [AuthGuard] },
+  // { path: '', component: ConversationComponent, canActivate: [AuthGuard] },
+    { path: '', component: ConversationComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'sign_in', component: AuthComponent },
-  { path: 'conversation/:id', component: ConversationComponent, canActivate: [AuthGuard] },
+  // { path: 'conversation/:id', component: ConversationComponent, canActivate: [AuthGuard] },
+  { path: 'conversation/:id', component: ConversationComponent },
 
 
     // needs to update this route ont the website, too.
-  { path: 'updateprofile', component: ProfileupdateComponent, canActivate: [AuthGuard] }
+  // { path: 'updateprofile', component: ProfileupdateComponent, canActivate: [AuthGuard] }
+    { path: 'updateprofile', component: ProfileupdateComponent }
 ]
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(appRoutes);
