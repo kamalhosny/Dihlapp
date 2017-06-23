@@ -5,6 +5,8 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
+  // ignore this file, I made a mistake and this code doesn't work.
+  
   updateTokenData: any = {};
 
   constructor(private router: Router,
