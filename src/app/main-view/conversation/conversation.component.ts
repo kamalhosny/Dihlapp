@@ -1,15 +1,15 @@
+import { Component, OnInit, EventEmitter, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import {NgForm} from '@angular/forms';
+// import { FileUploadService } from '../../services/upload/file-upload.service';
+import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 
-import { Component, ElementRef, EventEmitter, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { UploadFile, UploadInput, UploadOutput, humanizeBytes } from 'ngx-uploader';
-import { AgmCoreModule } from '@agm/core';
-import { Broadcaster, Ng2Cable } from 'ng2-cable/js/index';
 import { MESSAGES } from './mock-message';
 import { Message } from './message.type';
 import { MessageService } from '../../services/message.service';
 import { LocationComponent } from './location/location.component';
 import { AuthService } from '../../services/auth.service';
+import { AgmCoreModule } from '@agm/core';
 
 @Component({
   selector: 'app-conversation',
@@ -27,7 +27,6 @@ import { AuthService } from '../../services/auth.service';
 export class ConversationComponent implements OnInit {
   message: Message;
   messages: Message[];
-  msg: Message;
   conversation_id: number;
   messageData: any = {};
   showMap: boolean =false;
@@ -38,7 +37,6 @@ export class ConversationComponent implements OnInit {
   dragOver: boolean;
   tempImg: string;
   attachmentMenu: boolean = true;
-
   constructor(private messageService: MessageService,
     private element: ElementRef,
     private route: ActivatedRoute,
@@ -65,7 +63,6 @@ export class ConversationComponent implements OnInit {
   this.messageData.message = {};
   this.messages = [];
 }
-
 
 // show attachment small menu
 showAttachmentMenu() {

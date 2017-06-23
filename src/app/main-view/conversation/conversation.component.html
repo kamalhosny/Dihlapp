@@ -5,20 +5,20 @@
     <button class="fa fa-star" aria-hidden="true" (click)="Favorite(contact)" [ngClass]="{yellow: isFavorite}"></button>
   </div> -->
   <div class="conversation clearfix">
-    <div class="message" *ngFor="let message of messages" [ngClass]="message.user_id === 1 ? 'current-user' : 'user'">
-      <img src="https://placeholdit.co//i/50x50"/>
-      <p>{{message.body}}</p>
+    <div class="message" *ngFor="let message of messages" [ngClass]="message.user.name === 'Joe' ? 'current-user' : 'user'">
+      <img src="{{message.user.avatar}}"/>
+      <p>{{message.content}}</p>
       <!-- <button (click)="deleteMessage(message.id)">Delete</button> -->
-      <p class="light">{{message.created_at}}</p>
-      <!-- <p class="seen" *ngIf="message.seen">
+      <p class="light">{{message.timestamp}}</p>
+      <p class="seen" *ngIf="message.seen">
         <span class="fa-stack">
           <i class="fa fa-check fa-stack-1x" style="margin-left:4px"></i>
           <i class="fa fa-check  fa-stack-1x" style="margin-left:-4px"></i>
         </span>
-      </p> -->
-      <!-- <p class="sent" *ngIf="message.sent && message.seen === false">
+      </p>
+      <p class="sent" *ngIf="message.sent && message.seen === false">
         <i class="fa fa-check"></i>
-      </p> -->
+      </p>
     </div>
   </div>
 
