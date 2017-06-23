@@ -55,7 +55,7 @@ export class ConversationComponent implements OnInit {
       }
       );
   
-
+  // ignore the below if statement as joe needs to look into it again
   if (location.hash) {
     let token = location.hash.substring(1).split('&').filter(function(s) { return s.startsWith('access_token') })[0].split('=')[1]
     localStorage.setItem('token', token);
@@ -100,36 +100,37 @@ sendMessage() {
   //       .subscribe(messages => this.messages = messages);
   // }
 
-  onUploadOutput(output: UploadOutput): void {
-    console.log(output);
+  // The below block is not used so i commented it out
+  // onUploadOutput(output: UploadOutput): void {
+  //   console.log(output);
 
-    if (output.type === 'allAddedToQueue') {
+  //   if (output.type === 'allAddedToQueue') {
 
-    } else if (output.type === 'addedToQueue') {
-      this.files.push(output.file);
+  //   } else if (output.type === 'addedToQueue') {
+  //     this.files.push(output.file);
 
-    } else if (output.type === 'uploading') {
+  //   } else if (output.type === 'uploading') {
 
-      const index = this.files.findIndex(file => file.id === output.file.id);
-      this.files[index] = output.file;
+  //     const index = this.files.findIndex(file => file.id === output.file.id);
+  //     this.files[index] = output.file;
 
-    } else if (output.type === 'removed') {
+  //   } else if (output.type === 'removed') {
 
-      this.files = this.files.filter((file: UploadFile) => file !== output.file);
+  //     this.files = this.files.filter((file: UploadFile) => file !== output.file);
 
-    } else if (output.type === 'dragOver') {
+  //   } else if (output.type === 'dragOver') {
 
-      this.dragOver = true;
+  //     this.dragOver = true;
 
-    } else if (output.type === 'dragOut') {
+  //   } else if (output.type === 'dragOut') {
 
-      this.dragOver = false;
+  //     this.dragOver = false;
 
-    } else if (output.type === 'drop') {
+  //   } else if (output.type === 'drop') {
 
-      this.dragOver = false;
-    }
-  }
+  //     this.dragOver = false;
+  //   }
+  // }
 
   _window(): any {
     return window;
