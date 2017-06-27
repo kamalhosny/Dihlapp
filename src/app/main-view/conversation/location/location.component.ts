@@ -23,6 +23,7 @@ export class LocationComponent implements OnInit {
 
   @ViewChildren('myMap') viewChildren:QueryList<any>;
 
+// to solve the modal issue :
   doTriggerResize() {
     this.viewChildren.toArray().forEach((e) => {
       e.triggerResize();
@@ -37,15 +38,18 @@ export class LocationComponent implements OnInit {
     this.mapsAPILoader.load()
   }
 
+  //
   setPosition(position) {
     this.location = position.coords;
     this.coords.latitude = this.location.latitude;
     this.coords.longitude = this.location.longitude;
   }
   ngOnInit() {
+
     this.hideMap=true;
     this.zoom = 12;
     this.searchControl = new FormControl();
+// initial location "where the user is"
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
     };
@@ -71,11 +75,13 @@ export class LocationComponent implements OnInit {
     });
   }
 
+// to update the position when the marker draged and droped anywhere :
   private updateMarkerPos(position){
     this.coords.longitude = position.coords.lng;
     this.coords.latitude = position.coords.lat;
   }
 
+  // generates static map :
   private staticMapUrl(zoom,size){
     this.staticMap = "http://maps.google.com/maps/api/staticmap?zoom="+zoom+"&size="+size+"x"+size+"&markers=color:red|"+this.coords.latitude+","+this.coords.longitude+"&mobile=true&sensor=false"
 

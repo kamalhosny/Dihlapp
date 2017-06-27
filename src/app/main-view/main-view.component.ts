@@ -1,3 +1,4 @@
+// This component should be removed in general we dont use it any more 
 import { Component, OnInit } from '@angular/core';
 
 import { ConversationComponent } from './conversation/conversation.component';

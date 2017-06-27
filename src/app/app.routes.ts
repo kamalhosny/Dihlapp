@@ -10,11 +10,14 @@ import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
   // { path: '', component: ConversationComponent, canActivate: [AuthGuard] },
-    { path: '', component: ConversationComponent},
+  // This path dosn't represent any thing any more since every conversation must have its id in the URL
+  { path: '', component: ConversationComponent},
+
+
   { path: 'register', component: RegisterComponent },
   { path: 'sign_in', component: AuthComponent },
-  // { path: 'conversation/:id', component: ConversationComponent, canActivate: [AuthGuard] },
   { path: 'conversation/:id', component: ConversationComponent },
+  // { path: 'conversation/:id', component: ConversationComponent, canActivate: [AuthGuard] },
 
 
     // needs to update this route ont the website, too.

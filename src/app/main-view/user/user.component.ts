@@ -25,10 +25,12 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.messageService.getConversations().subscribe(data => {
       console.log(data)
+      // this should be changed to Conversation instead :
       this.contacts = data})
   }
 
 }
+// this should be updated to the attributes of the conversation
 interface contact {
   name: string;
   isOnline: boolean;
